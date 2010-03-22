@@ -54,6 +54,10 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
+    <Compile Include="LmlXmlSerializerTests\Mother.cs" />
+    <Compile Include="LmlXmlSerializerTests\ToItem.cs" />
+    <Compile Include="LmlXmlSerializerTests\ToLibrary.cs" />
+    <Compile Include="LmlXmlSerializerTests\ToXElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

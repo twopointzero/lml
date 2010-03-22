@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace twopointzero.Lml
 {
@@ -10,6 +11,29 @@ namespace twopointzero.Lml
 
         public Library(string version, string sourceType, IEnumerable<Item> items)
         {
+            if (version == null)
+            {
+                throw new ArgumentNullException("version");
+            }
+            if (version.Length == 0)
+            {
+                throw new ArgumentOutOfRangeException("version", "Argument must be non-empty.");
+            }
+
+            if (sourceType == null)
+            {
+                throw new ArgumentNullException("sourceType");
+            }
+            if (sourceType.Length == 0)
+            {
+                throw new ArgumentOutOfRangeException("sourceType", "Argument must be non-empty.");
+            }
+
+            if (items == null)
+            {
+                throw new ArgumentNullException("items");
+            }
+
             _version = version;
             _sourceType = sourceType;
             _items = items;
