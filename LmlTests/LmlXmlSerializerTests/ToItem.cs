@@ -28,6 +28,24 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         }
 
         [Test]
+        public void GivenItemWithEmptyAttributesShouldProduceExpectedResult()
+        {
+            var item = Mother.CreateItemXElement("", "", "", "", "", "", "");
+            var expected = new Item(null, null, null, null, null, null, null);
+            var actual = new LmlXmlSerializer().ToItem(item);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GivenItemWithoutAttributesShouldProduceExpectedResult()
+        {
+            var item = new XElement("i");
+            var expected = new Item(null, null, null, null, null, null, null);
+            var actual = new LmlXmlSerializer().ToItem(item);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         public void GivenNonItemShouldThrowArgumentNullException()
         {
             var item = new XElement("z");

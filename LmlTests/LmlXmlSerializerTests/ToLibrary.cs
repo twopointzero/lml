@@ -85,6 +85,44 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         }
 
         [Test]
+        public void GivenLibraryWithEmptySourceTypeShouldThrowArgumentOutOfRangeException()
+        {
+            var library = new XElement("l",
+                                       new XAttribute("v", "1.0"),
+                                       new XAttribute("st", string.Empty));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+        }
+
+        [Test]
+        public void GivenLibraryWithEmptyVersionShouldThrowArgumentOutOfRangeException()
+        {
+            var library = new XElement("l",
+                                       new XAttribute("v", string.Empty),
+                                       new XAttribute("st", "Unit Tests"));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+        }
+
+        [Test]
+        public void GivenLibraryWithoutSourceTypeShouldThrowArgumentOutOfRangeException()
+        {
+            var library = new XElement("l",
+                                       new XAttribute("v", "1.0"));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+        }
+
+        [Test]
+        public void GivenLibraryWithoutVersionShouldThrowArgumentOutOfRangeException()
+        {
+            var library = new XElement("l",
+                                       new XAttribute("st", "Unit Tests"));
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+        }
+
+        [Test]
         public void GivenNonLibraryShouldThrowArgumentNullException()
         {
             var library = new XElement("z");
