@@ -67,6 +67,24 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         }
 
         [Test]
+        public void GivenHostItemWithEmptyAttributesShouldProduceExpectedResult()
+        {
+            var item = new Item("", "", null, null, null, "", "");
+            var expected = new XElement("i");
+            var actual = new LmlXmlSerializer().ToXElement(item);
+            Assert.IsTrue(XNode.DeepEquals(expected, actual));
+        }
+
+        [Test]
+        public void GivenHostItemWithNullAttributesShouldProduceExpectedResult()
+        {
+            var item = new Item(null, null, null, null, null, null, null);
+            var expected = new XElement("i");
+            var actual = new LmlXmlSerializer().ToXElement(item);
+            Assert.IsTrue(XNode.DeepEquals(expected, actual));
+        }
+
+        [Test]
         public void GivenHostLibraryShouldProduceExpectedResult()
         {
             var item1 = new Item("Artist1", "Title1", 0.421, 691, new DateTime(2010, 1, 11), "Genre1",

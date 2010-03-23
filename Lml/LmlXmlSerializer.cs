@@ -14,19 +14,19 @@ namespace twopointzero.Lml
             }
 
             var element = new XElement("i");
-            AddAttributeIfValueNotNull(element, "a", item.Artist);
-            AddAttributeIfValueNotNull(element, "t", item.Title);
-            AddAttributeIfValueNotNull(element, "r", item.Rating);
-            AddAttributeIfValueNotNull(element, "pc", item.PlayCount);
-            AddAttributeIfValueNotNull(element, "lp", item.LastPlayed);
-            AddAttributeIfValueNotNull(element, "g", item.Genre);
-            AddAttributeIfValueNotNull(element, "l", item.Location);
+            AddAttributeIfValueNonEmpty(element, "a", item.Artist);
+            AddAttributeIfValueNonEmpty(element, "t", item.Title);
+            AddAttributeIfValueNonEmpty(element, "r", item.Rating);
+            AddAttributeIfValueNonEmpty(element, "pc", item.PlayCount);
+            AddAttributeIfValueNonEmpty(element, "lp", item.LastPlayed);
+            AddAttributeIfValueNonEmpty(element, "g", item.Genre);
+            AddAttributeIfValueNonEmpty(element, "l", item.Location);
             return element;
         }
 
-        private static void AddAttributeIfValueNotNull(XElement element, XName name, object value)
+        private static void AddAttributeIfValueNonEmpty(XElement element, XName name, object value)
         {
-            if (value == null)
+            if (value == null || (value is string && ((string)value).Length == 0))
                 return;
 
             element.Add(new XAttribute(name, value));
