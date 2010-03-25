@@ -55,6 +55,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetLibraryMetadata.cs" />
+    <Compile Include="Importers\AppleITunesXmlImporterTests\GetPlistRootNode.cs" />
     <Compile Include="LmlXmlSerializerTests\Mother.cs" />
     <Compile Include="LmlXmlSerializerTests\ToItem.cs" />
     <Compile Include="LmlXmlSerializerTests\ToLibrary.cs" />

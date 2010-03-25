@@ -47,16 +47,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         }
 
         [Test]
-        public void GivenNoDtdShouldThrowArgumentOutOfRangeException()
-        {
-            const string input = @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<plist version=""1.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
         public void GivenNoMainDictShouldThrowArgumentOutOfRangeException()
         {
             const string input =
@@ -216,78 +206,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(true, actual["MajorVersion"]);
-        }
-
-        [Test]
-        public void GivenRootNodeWithWrongVersionShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""0.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
-        public void GivenRootNodeWithoutVersionShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist>
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
-        public void GivenWrongDtdNameShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE zlist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""1.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
-        public void GivenWrongDtdPublicIdShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Snapple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""1.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
-        public void GivenWrongDtdSystemIdShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.snapple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""1.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
-        }
-
-        [Test]
-        public void GivenWrongRootNodeShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<zlist>
-</zlist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
         }
     }
 }

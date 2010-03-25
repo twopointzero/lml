@@ -9,21 +9,21 @@ namespace twopointzero.Lml.Importers
 {
     public class AppleITunesXmlImporter
     {
-        public IDictionary<string, object> GetLibraryMetadata(TextReader reader)
+        internal static XElement GetPlistRootNode(TextReader readerAtStartOfDocument)
         {
-            if (reader == null)
+            if (readerAtStartOfDocument == null)
             {
-                throw new ArgumentNullException("reader");
+                throw new ArgumentNullException("readerAtStartOfDocument");
             }
 
-            var doc = XDocument.Load(reader);
+            var doc = XDocument.Load(readerAtStartOfDocument);
 
             var documentType = doc.DocumentType;
             var requiredDocumentType = new XDocumentType("plist", "-//Apple Computer//DTD PLIST 1.0//EN",
                                                          "http://www.apple.com/DTDs/PropertyList-1.0.dtd", "");
             if (!XNode.DeepEquals(documentType, requiredDocumentType))
             {
-                throw new ArgumentOutOfRangeException("reader",
+                throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
                                                       "The provided TextReader's document does not contain the required DOCTYPE of the form " +
                                                       @"<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">");
             }
@@ -31,16 +31,23 @@ namespace twopointzero.Lml.Importers
             var root = doc.Element("plist");
             if (root == null)
             {
-                throw new ArgumentOutOfRangeException("reader",
+                throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
                                                       "The provided TextReader's document does not contain the required plist root node.");
             }
 
             var version = root.Attribute("version");
             if (version == null || version.Value != "1.0")
             {
-                throw new ArgumentOutOfRangeException("reader",
+                throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
                                                       "The provided TextReader's document does not contain the required plist root node version of \"1.0\".");
             }
+
+            return root;
+        }
+
+        public IDictionary<string, object> GetLibraryMetadata(TextReader reader)
+        {
+            XElement root = GetPlistRootNode(reader);
 
             var mainDict = root.Element("dict");
             if (mainDict == null)
