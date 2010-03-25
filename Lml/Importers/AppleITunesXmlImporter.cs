@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace twopointzero.Lml.Importers
 {
-    public class AppleITunesXmlImporter
+    public static class AppleITunesXmlImporter
     {
         internal static XElement GetPlistRootNode(TextReader readerAtStartOfDocument)
         {
@@ -68,15 +68,23 @@ namespace twopointzero.Lml.Importers
                 throw new ArgumentNullException("reader");
             }
 
-            XElement root = GetPlistRootNode(reader);
-
-            XElement mainDict = GetPlistDictNode(root);
-
-            return mainDict.Elements("key").ToDictionary(key => ((string)key).Replace(" ", ""),
-                                                         key => ImportPrimitive(key.NextNode));
+            XElement plistRootNode = GetPlistRootNode(reader);
+            XElement mainDictNode = GetPlistDictNode(plistRootNode);
+            return GetPrimitiveEntries(mainDictNode);
         }
 
-        private static object ImportPrimitive(XNode node)
+        internal static IDictionary<string, object> GetPrimitiveEntries(XElement dictNode)
+        {
+            if (dictNode == null)
+            {
+                throw new ArgumentNullException("dictNode");
+            }
+
+            return dictNode.Elements("key").ToDictionary(key => ((string)key).Replace(" ", ""),
+                                                         key => GetPrimitiveValue(key.NextNode));
+        }
+
+        private static object GetPrimitiveValue(XNode node)
         {
             var element = node as XElement;
             if (element == null)
