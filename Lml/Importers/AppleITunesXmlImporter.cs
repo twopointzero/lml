@@ -84,7 +84,7 @@ namespace twopointzero.Lml.Importers
                                                          key => GetPrimitiveValue(key.NextNode));
         }
 
-        private static object GetPrimitiveValue(XNode node)
+        internal static object GetPrimitiveValue(XNode node)
         {
             var element = node as XElement;
             if (element == null)

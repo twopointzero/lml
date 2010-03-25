@@ -58,6 +58,7 @@
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPlistDictNode.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPlistRootNode.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveEntries.cs" />
+    <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveValue.cs" />
     <Compile Include="LmlXmlSerializerTests\Mother.cs" />
     <Compile Include="LmlXmlSerializerTests\ToItem.cs" />
     <Compile Include="LmlXmlSerializerTests\ToLibrary.cs" />
