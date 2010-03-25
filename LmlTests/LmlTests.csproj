@@ -54,11 +54,11 @@
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
-    <Compile Include="Importers\AppleITunesXmlImporterTests\GetLibraryMetadata.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPlistDictNode.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPlistRootNode.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveEntries.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveValue.cs" />
+    <Compile Include="Importers\AppleITunesXmlImporterTests\ImportLibrary.cs" />
     <Compile Include="LmlXmlSerializerTests\Mother.cs" />
     <Compile Include="LmlXmlSerializerTests\ToItem.cs" />
     <Compile Include="LmlXmlSerializerTests\ToLibrary.cs" />
@@ -70,6 +70,11 @@
       <Project>{D4155A76-9B03-4793-ADF8-EDEB01C0CDE3}</Project>
       <Name>Lml</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Importers\AppleITunesXmlImporterTests\mac iTunes Music Library.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

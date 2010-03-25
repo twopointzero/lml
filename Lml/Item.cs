@@ -5,7 +5,7 @@ namespace twopointzero.Lml
     public class Item : IEquatable<Item>
     {
         private readonly string _artist;
-        private readonly int? _duration;
+        private readonly long? _duration;
         private readonly string _genre;
         private readonly DateTime? _lastPlayed;
         private readonly string _location;
@@ -14,7 +14,7 @@ namespace twopointzero.Lml
         private readonly string _title;
 
         public Item(string artist, string title, double? rating, int? playCount, DateTime? lastPlayed, string genre,
-                    string location, int? duration)
+                    string location, long? duration)
         {
             _artist = artist;
             _title = title;
@@ -61,7 +61,7 @@ namespace twopointzero.Lml
             get { return _location; }
         }
 
-        public int? Duration
+        public long? Duration
         {
             get { return _duration; }
         }
@@ -94,7 +94,7 @@ namespace twopointzero.Lml
             unchecked
             {
                 int result = (_artist != null ? _artist.GetHashCode() : 0);
-                result = (result * 397) ^ (_duration.HasValue ? _duration.Value : 0);
+                result = (result * 397) ^ (_duration.HasValue ? _duration.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_genre != null ? _genre.GetHashCode() : 0);
                 result = (result * 397) ^ (_lastPlayed.HasValue ? _lastPlayed.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_location != null ? _location.GetHashCode() : 0);

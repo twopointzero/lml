@@ -30,8 +30,8 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             var actual = AppleITunesXmlImporter.GetPrimitiveEntries(dictNode);
             Assert.IsNotNull(actual);
             Assert.AreEqual(2, actual.Count);
-            Assert.AreEqual(1, actual["MajorVersion"]);
-            Assert.AreEqual(2, actual["MinorVersion"]);
+            Assert.AreEqual(1, actual["Major Version"]);
+            Assert.AreEqual(2, actual["Minor Version"]);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             var actual = AppleITunesXmlImporter.GetPrimitiveEntries(dictNode);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual(1, actual["MajorVersion"]);
+            Assert.AreEqual(1, actual["Major Version"]);
         }
     }
 }

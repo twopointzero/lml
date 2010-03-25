@@ -51,6 +51,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Importers\AppleITunesXmlImporter.cs" />
+    <Compile Include="LibraryMode.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="LmlXmlSerializer.cs" />
