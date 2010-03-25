@@ -47,18 +47,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         }
 
         [Test]
-        public void GivenNoMainDictShouldThrowArgumentOutOfRangeException()
-        {
-            const string input =
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">
-<plist version=""1.0"">
-</plist>";
-            var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => AppleITunesXmlImporter.GetLibraryMetadata(reader));
-        }
-
-        [Test]
         public void GivenNullShouldThrowArgumentNullException()
         {
             Assert.Throws<ArgumentNullException>(() => AppleITunesXmlImporter.GetLibraryMetadata(null));

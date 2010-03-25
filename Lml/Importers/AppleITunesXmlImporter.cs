@@ -45,16 +45,32 @@ namespace twopointzero.Lml.Importers
             return root;
         }
 
-        public static IDictionary<string, object> GetLibraryMetadata(TextReader reader)
+        internal static XElement GetPlistDictNode(XElement plistRootNode)
         {
-            XElement root = GetPlistRootNode(reader);
+            if (plistRootNode == null)
+            {
+                throw new ArgumentNullException("plistRootNode");
+            }
 
-            var mainDict = root.Element("dict");
+            var mainDict = plistRootNode.Element("dict");
             if (mainDict == null)
             {
-                throw new ArgumentOutOfRangeException("reader",
-                                                      "The provided TextReader's document does not contain the required main dict element.");
+                throw new ArgumentOutOfRangeException("plistRootNode",
+                                                      "The provided plist XElement does not contain the required main dict element.");
             }
+            return mainDict;
+        }
+
+        public static IDictionary<string, object> GetLibraryMetadata(TextReader reader)
+        {
+            if (reader == null)
+            {
+                throw new ArgumentNullException("reader");
+            }
+
+            XElement root = GetPlistRootNode(reader);
+
+            XElement mainDict = GetPlistDictNode(root);
 
             return mainDict.Elements("key").ToDictionary(key => ((string)key).Replace(" ", ""),
                                                          key => ImportPrimitive(key.NextNode));
