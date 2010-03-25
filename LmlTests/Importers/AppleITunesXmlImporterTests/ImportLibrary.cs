@@ -26,11 +26,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         {
             var item = items.First(o => o.Title == title);
             Assert.AreEqual(artist, item.Artist);
-            Assert.AreEqual(duration, item.Duration);
-            Assert.AreEqual(genre, item.Genre);
-            Assert.AreEqual(lastPlayed, item.LastPlayed);
-            Assert.AreEqual(location, item.Location);
-            Assert.AreEqual(playCount, item.PlayCount);
             if (rating == null)
             {
                 Assert.IsNull(item.Rating);
@@ -40,6 +35,11 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                 Assert.IsNotNull(item.Rating);
                 Assert.AreEqual(rating.Value, item.Rating.Value, 0.001);
             }
+            Assert.AreEqual(playCount, item.PlayCount);
+            Assert.AreEqual(lastPlayed, item.LastPlayed);
+            Assert.AreEqual(genre, item.Genre);
+            Assert.AreEqual(location, item.Location);
+            Assert.AreEqual(duration, item.Duration);
         }
 
         [Test]
