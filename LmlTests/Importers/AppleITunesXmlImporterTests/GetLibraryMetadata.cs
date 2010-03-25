@@ -19,7 +19,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(0, actual.Count);
         }
@@ -38,7 +38,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(3, actual.Count);
             Assert.AreEqual(1, actual["MajorVersion"]);
@@ -55,13 +55,13 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 <plist version=""1.0"">
 </plist>";
             var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(reader));
+            Assert.Throws<ArgumentOutOfRangeException>(() => AppleITunesXmlImporter.GetLibraryMetadata(reader));
         }
 
         [Test]
         public void GivenNullShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new AppleITunesXmlImporter().GetLibraryMetadata(null));
+            Assert.Throws<ArgumentNullException>(() => AppleITunesXmlImporter.GetLibraryMetadata(null));
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, (byte[])actual["MajorVersion"]);
@@ -94,7 +94,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(new DateTime(2010, 03, 23, 20, 58, 52, DateTimeKind.Utc), actual["MajorVersion"]);
@@ -112,7 +112,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(false, actual["MajorVersion"]);
@@ -130,7 +130,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(1, actual["MajorVersion"]);
@@ -148,7 +148,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(-42, (double)actual["MajorVersion"], 0.001);
@@ -166,7 +166,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(0.42, (double)actual["MajorVersion"], 0.001);
@@ -184,7 +184,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual("1", actual["MajorVersion"]);
@@ -202,7 +202,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 </dict>
 </plist>";
             var reader = new StringReader(input);
-            var actual = new AppleITunesXmlImporter().GetLibraryMetadata(reader);
+            var actual = AppleITunesXmlImporter.GetLibraryMetadata(reader);
             Assert.IsNotNull(actual);
             Assert.AreEqual(1, actual.Count);
             Assert.AreEqual(true, actual["MajorVersion"]);

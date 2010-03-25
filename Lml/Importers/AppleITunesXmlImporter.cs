@@ -45,7 +45,7 @@ namespace twopointzero.Lml.Importers
             return root;
         }
 
-        public IDictionary<string, object> GetLibraryMetadata(TextReader reader)
+        public static IDictionary<string, object> GetLibraryMetadata(TextReader reader)
         {
             XElement root = GetPlistRootNode(reader);
 
