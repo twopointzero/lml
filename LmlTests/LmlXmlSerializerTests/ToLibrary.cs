@@ -41,9 +41,9 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                        item2,
                                        item3);
 
-            var expectedItem1 = new Item("Artist1", "Title1", 0.421, 691, new DateTime(2010, 1, 11), "Genre1", null);
-            var expectedItem2 = new Item("Artist2", "Title2", 0.422, 692, new DateTime(2010, 1, 12), "Genre2", null);
-            var expectedItem3 = new Item("Artist3", "Title3", 0.423, 693, new DateTime(2010, 1, 13), "Genre3", null);
+            var expectedItem1 = new Item("Artist1", "Title1", 0.421, 691, new DateTime(2010, 1, 11), "Genre1", null, null);
+            var expectedItem2 = new Item("Artist2", "Title2", 0.422, 692, new DateTime(2010, 1, 12), "Genre2", null, null);
+            var expectedItem3 = new Item("Artist3", "Title3", 0.423, 693, new DateTime(2010, 1, 13), "Genre3", null, null);
             var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
             var actual = new LmlXmlSerializer().ToLibrary(library);
@@ -57,11 +57,11 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenHostLibraryShouldProduceExpectedResult()
         {
             var item1 = Mother.CreateItemXElement("Artist1", "Title1", "0.421", "691", "2010-01-11T00:00:00",
-                                                  "Genre1", @"C:\path\file1.ext");
+                                                  "Genre1", @"C:\path\file1.ext", "741");
             var item2 = Mother.CreateItemXElement("Artist2", "Title2", "0.422", "692", "2010-01-12T00:00:00",
-                                                  "Genre2", @"C:\path\file2.ext");
+                                                  "Genre2", @"C:\path\file2.ext", "742");
             var item3 = Mother.CreateItemXElement("Artist3", "Title3", "0.423", "693", "2010-01-13T00:00:00",
-                                                  "Genre3", @"C:\path\file3.ext");
+                                                  "Genre3", @"C:\path\file3.ext", "743");
             var library = new XElement("l",
                                        new XAttribute("v", "1.0"),
                                        new XAttribute("st", "Unit Tests"),
@@ -70,11 +70,11 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                        item3);
 
             var expectedItem1 = new Item("Artist1", "Title1", 0.421, 691, new DateTime(2010, 1, 11), "Genre1",
-                                         @"C:\path\file1.ext");
+                                         @"C:\path\file1.ext", 741);
             var expectedItem2 = new Item("Artist2", "Title2", 0.422, 692, new DateTime(2010, 1, 12), "Genre2",
-                                         @"C:\path\file2.ext");
+                                         @"C:\path\file2.ext", 742);
             var expectedItem3 = new Item("Artist3", "Title3", 0.423, 693, new DateTime(2010, 1, 13), "Genre3",
-                                         @"C:\path\file3.ext");
+                                         @"C:\path\file3.ext", 743);
             var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
             var actual = new LmlXmlSerializer().ToLibrary(library);

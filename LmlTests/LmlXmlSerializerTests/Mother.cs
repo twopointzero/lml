@@ -17,7 +17,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         }
 
         public static XElement CreateItemXElement(string artist, string title, string rating, string playCount,
-                                                  string lastPlayed, string genre, string location)
+                                                  string lastPlayed, string genre, string location, string duration)
         {
             return new XElement("i",
                                 new XAttribute("a", artist),
@@ -26,7 +26,8 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                 new XAttribute("pc", playCount),
                                 new XAttribute("lp", lastPlayed),
                                 new XAttribute("g", genre),
-                                new XAttribute("l", location));
+                                new XAttribute("l", location),
+                                new XAttribute("d", duration));
         }
     }
 }

@@ -5,6 +5,7 @@ namespace twopointzero.Lml
     public class Item : IEquatable<Item>
     {
         private readonly string _artist;
+        private readonly int? _duration;
         private readonly string _genre;
         private readonly DateTime? _lastPlayed;
         private readonly string _location;
@@ -13,7 +14,7 @@ namespace twopointzero.Lml
         private readonly string _title;
 
         public Item(string artist, string title, double? rating, int? playCount, DateTime? lastPlayed, string genre,
-                    string location)
+                    string location, int? duration)
         {
             _artist = artist;
             _title = title;
@@ -22,6 +23,7 @@ namespace twopointzero.Lml
             _lastPlayed = lastPlayed;
             _genre = genre;
             _location = location;
+            _duration = duration;
         }
 
         public string Artist
@@ -59,6 +61,11 @@ namespace twopointzero.Lml
             get { return _location; }
         }
 
+        public int? Duration
+        {
+            get { return _duration; }
+        }
+
 
         #region IEquatable<Item> Members
 
@@ -66,7 +73,7 @@ namespace twopointzero.Lml
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other._artist, _artist) && Equals(other._genre, _genre) &&
+            return Equals(other._artist, _artist) && other._duration.Equals(_duration) && Equals(other._genre, _genre) &&
                    other._lastPlayed.Equals(_lastPlayed) && Equals(other._location, _location) &&
                    other._playCount.Equals(_playCount) && other._rating.Equals(_rating) && Equals(other._title, _title);
         }
@@ -87,6 +94,7 @@ namespace twopointzero.Lml
             unchecked
             {
                 int result = (_artist != null ? _artist.GetHashCode() : 0);
+                result = (result * 397) ^ (_duration.HasValue ? _duration.Value : 0);
                 result = (result * 397) ^ (_genre != null ? _genre.GetHashCode() : 0);
                 result = (result * 397) ^ (_lastPlayed.HasValue ? _lastPlayed.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_location != null ? _location.GetHashCode() : 0);

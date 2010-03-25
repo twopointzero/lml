@@ -21,6 +21,7 @@ namespace twopointzero.Lml
             AddAttributeIfValueNonEmpty(element, "lp", item.LastPlayed);
             AddAttributeIfValueNonEmpty(element, "g", item.Genre);
             AddAttributeIfValueNonEmpty(element, "l", item.Location);
+            AddAttributeIfValueNonEmpty(element, "d", item.Duration);
             return element;
         }
 
@@ -71,7 +72,9 @@ namespace twopointzero.Lml
             var lastPlayed = lastPlayedValue == null ? (DateTime?)null : Convert.ToDateTime(lastPlayedValue);
             string genre = GetNonEmptyAttributeValueOrNull(element, "g");
             string location = GetNonEmptyAttributeValueOrNull(element, "l");
-            return new Item(artist, title, rating, playCount, lastPlayed, genre, location);
+            string durationValue = GetNonEmptyAttributeValueOrNull(element, "d");
+            var duration = durationValue == null ? (int?)null : Convert.ToInt32(durationValue);
+            return new Item(artist, title, rating, playCount, lastPlayed, genre, location, duration);
         }
 
         private static string GetNonEmptyAttributeValueOrNull(XElement element, string name)
