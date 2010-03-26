@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using twopointzero.Lml.Validation;
 
 namespace twopointzero.Lml.Importers
 {
@@ -13,10 +14,7 @@ namespace twopointzero.Lml.Importers
 
         internal static XElement GetPlistRootNode(TextReader readerAtStartOfDocument)
         {
-            if (readerAtStartOfDocument == null)
-            {
-                throw new ArgumentNullException("readerAtStartOfDocument");
-            }
+            Validator.IsNotNull(readerAtStartOfDocument, "readerAtStartOfDocument");
 
             var doc = XDocument.Load(readerAtStartOfDocument);
 
@@ -49,10 +47,7 @@ namespace twopointzero.Lml.Importers
 
         internal static XElement GetPlistDictNode(XElement plistRootNode)
         {
-            if (plistRootNode == null)
-            {
-                throw new ArgumentNullException("plistRootNode");
-            }
+            Validator.IsNotNull(plistRootNode, "plistRootNode");
 
             var mainDict = plistRootNode.Element("dict");
             if (mainDict == null)
@@ -65,10 +60,7 @@ namespace twopointzero.Lml.Importers
 
         internal static IDictionary<string, object> GetPrimitiveEntries(XElement dictNode)
         {
-            if (dictNode == null)
-            {
-                throw new ArgumentNullException("dictNode");
-            }
+            Validator.IsNotNull(dictNode, "dictNode");
 
             return dictNode.Elements("key").ToDictionary(key => (string)key,
                                                          key => GetPrimitiveValue(key.NextNode));
@@ -106,10 +98,7 @@ namespace twopointzero.Lml.Importers
 
         public static Library ImportLibrary(TextReader reader, LibraryMode libraryMode)
         {
-            if (reader == null)
-            {
-                throw new ArgumentNullException("reader");
-            }
+            Validator.IsNotNull(reader, "reader");
 
             XElement plistRootNode = GetPlistRootNode(reader);
             XElement mainDictNode = GetPlistDictNode(plistRootNode);
@@ -118,24 +107,28 @@ namespace twopointzero.Lml.Importers
             object version;
             if (!metadata.TryGetValue("Application Version", out version))
             {
-                throw new ArgumentOutOfRangeException("reader", "The provided document does not include the required Application Version property.");
+                throw new ArgumentOutOfRangeException("reader",
+                                                      "The provided document does not include the required Application Version property.");
             }
 
             object tracks;
             if (!metadata.TryGetValue("Tracks", out tracks))
             {
-                throw new ArgumentOutOfRangeException("reader", "The provided document does not include the required Tracks key.");
+                throw new ArgumentOutOfRangeException("reader",
+                                                      "The provided document does not include the required Tracks key.");
             }
 
             var tracksElement = tracks as XElement;
             if (tracksElement == null)
             {
-                throw new ArgumentOutOfRangeException("reader", "The provided document does not include the required Tracks value.");
+                throw new ArgumentOutOfRangeException("reader",
+                                                      "The provided document does not include the required Tracks value.");
             }
 
             if (tracksElement.Name.LocalName != "dict")
             {
-                throw new ArgumentOutOfRangeException("reader", "The provided document's Tracks value is of the wrong type.");
+                throw new ArgumentOutOfRangeException("reader",
+                                                      "The provided document's Tracks value is of the wrong type.");
             }
 
             return new Library(LibraryVersion, "iTunes " + version, GetItems(tracksElement, libraryMode));

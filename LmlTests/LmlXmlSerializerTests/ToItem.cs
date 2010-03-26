@@ -22,7 +22,8 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = Mother.CreateItemXElement("Artist", "Title", "0.42", "69", "2010-01-01T00:00:00", "Genre",
                                                  @"C:\path\file.ext", "74");
-            var expected = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", @"C:\path\file.ext", 74);
+            var expected = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", @"C:\path\file.ext",
+                                    74);
             var actual = new LmlXmlSerializer().ToItem(item);
             Assert.AreEqual(expected, actual);
         }

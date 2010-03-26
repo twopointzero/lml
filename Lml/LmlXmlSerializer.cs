@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Xml.Linq;
+using twopointzero.Lml.Validation;
 
 namespace twopointzero.Lml
 {
@@ -8,10 +9,7 @@ namespace twopointzero.Lml
     {
         public XElement ToXElement(Item item)
         {
-            if (item == null)
-            {
-                throw new ArgumentNullException("item");
-            }
+            Validator.IsNotNull(item, "item");
 
             var element = new XElement("i");
             AddAttributeIfValueNonEmpty(element, "a", item.Artist);
@@ -35,10 +33,7 @@ namespace twopointzero.Lml
 
         public XElement ToXElement(Library library)
         {
-            if (library == null)
-            {
-                throw new ArgumentNullException("library");
-            }
+            Validator.IsNotNull(library, "library");
 
             var attributes = new XObject[]
                                  {
@@ -52,15 +47,11 @@ namespace twopointzero.Lml
 
         public Item ToItem(XElement element)
         {
-            if (element == null)
-            {
-                throw new ArgumentNullException("element");
-            }
-
-            if (element.Name != "i")
-            {
-                throw new ArgumentOutOfRangeException("element", element.Name, "Item element (<i>) required.");
-            }
+            Validator.Create()
+                .IsNotNull(element, "element")
+                .Validate()
+                .IsEqualTo(element.Name, "element", "i", "Item element (<i>) required.")
+                .Validate();
 
             string artist = GetNonEmptyAttributeValueOrNull(element, "a");
             string title = GetNonEmptyAttributeValueOrNull(element, "t");
@@ -90,15 +81,11 @@ namespace twopointzero.Lml
 
         public Library ToLibrary(XElement element)
         {
-            if (element == null)
-            {
-                throw new ArgumentNullException("element");
-            }
-
-            if (element.Name != "l")
-            {
-                throw new ArgumentOutOfRangeException("element", element.Name, "Library element (<l>) required.");
-            }
+            Validator.Create()
+                .IsNotNull(element, "element")
+                .Validate()
+                .IsEqualTo(element.Name, "element", "l", "Library element (<l>) required.")
+                .Validate();
 
             string version = GetNonEmptyAttributeValueOrNull(element, "v");
             if (version == null)
