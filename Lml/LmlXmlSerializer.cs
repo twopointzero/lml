@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using twopointzero.Lml.Validation;
+using twopointzero.Lml.Xml.Linq.Extensions;
 
 namespace twopointzero.Lml
 {
@@ -12,23 +14,15 @@ namespace twopointzero.Lml
             Validator.IsNotNull(item, "item");
 
             var element = new XElement("i");
-            AddAttributeIfValueNonEmpty(element, "a", item.Artist);
-            AddAttributeIfValueNonEmpty(element, "t", item.Title);
-            AddAttributeIfValueNonEmpty(element, "r", item.Rating);
-            AddAttributeIfValueNonEmpty(element, "pc", item.PlayCount);
-            AddAttributeIfValueNonEmpty(element, "lp", item.LastPlayed);
-            AddAttributeIfValueNonEmpty(element, "g", item.Genre);
-            AddAttributeIfValueNonEmpty(element, "l", item.Location);
-            AddAttributeIfValueNonEmpty(element, "d", item.Duration);
+            element.AddAttributeIfValueNonEmpty("a", item.Artist);
+            element.AddAttributeIfValueNonEmpty("t", item.Title);
+            element.AddAttributeIfValueNonEmpty("r", item.Rating);
+            element.AddAttributeIfValueNonEmpty("pc", item.PlayCount);
+            element.AddAttributeIfValueNonEmpty("lp", item.LastPlayed);
+            element.AddAttributeIfValueNonEmpty("g", item.Genre);
+            element.AddAttributeIfValueNonEmpty("l", item.Location);
+            element.AddAttributeIfValueNonEmpty("d", item.Duration);
             return element;
-        }
-
-        private static void AddAttributeIfValueNonEmpty(XElement element, XName name, object value)
-        {
-            if (value == null || (value is string && ((string)value).Length == 0))
-                return;
-
-            element.Add(new XAttribute(name, value));
         }
 
         public XElement ToXElement(Library library)
@@ -40,8 +34,8 @@ namespace twopointzero.Lml
                                      new XAttribute("v", library.Version),
                                      new XAttribute("st", library.SourceType)
                                  };
-            var items = library.Items.Select(item => ToXElement(item)).Cast<XObject>();
-            var objects = attributes.Concat(items);
+            IEnumerable<XObject> items = library.Items.Select(item => ToXElement(item)).Cast<XObject>();
+            IEnumerable<XObject> objects = attributes.Concat(items);
             return new XElement("l", objects);
         }
 
@@ -53,30 +47,15 @@ namespace twopointzero.Lml
                 .IsEqualTo(element.Name, "element", "i", "Item element (<i>) required.")
                 .Validate();
 
-            string artist = GetNonEmptyAttributeValueOrNull(element, "a");
-            string title = GetNonEmptyAttributeValueOrNull(element, "t");
-            string ratingValue = GetNonEmptyAttributeValueOrNull(element, "r");
-            var rating = ratingValue == null ? (double?)null : Convert.ToDouble(ratingValue);
-            string playCountValue = GetNonEmptyAttributeValueOrNull(element, "pc");
-            var playCount = playCountValue == null ? (int?)null : Convert.ToInt32(playCountValue);
-            string lastPlayedValue = GetNonEmptyAttributeValueOrNull(element, "lp");
-            var lastPlayed = lastPlayedValue == null ? (DateTime?)null : Convert.ToDateTime(lastPlayedValue);
-            string genre = GetNonEmptyAttributeValueOrNull(element, "g");
-            string location = GetNonEmptyAttributeValueOrNull(element, "l");
-            string durationValue = GetNonEmptyAttributeValueOrNull(element, "d");
-            var duration = durationValue == null ? (int?)null : Convert.ToInt32(durationValue);
+            string artist = element.GetNonEmptyAttributeValueOrNull("a");
+            string title = element.GetNonEmptyAttributeValueOrNull("t");
+            double? rating = element.GetAttributeValueAsNullableDouble("r");
+            int? playCount = element.GetAttributeValueAsNullableInt32("pc");
+            DateTime? lastPlayed = element.GetAttributeValueAsNullableDateTime("lp");
+            string genre = element.GetNonEmptyAttributeValueOrNull("g");
+            string location = element.GetNonEmptyAttributeValueOrNull("l");
+            int? duration = element.GetAttributeValueAsNullableInt32("d");
             return new Item(artist, title, rating, playCount, lastPlayed, genre, location, duration);
-        }
-
-        private static string GetNonEmptyAttributeValueOrNull(XElement element, string name)
-        {
-            XAttribute attribute = element.Attribute(name);
-            if (attribute == null || string.IsNullOrEmpty(attribute.Value))
-            {
-                return null;
-            }
-
-            return attribute.Value;
         }
 
         public Library ToLibrary(XElement element)
@@ -87,19 +66,10 @@ namespace twopointzero.Lml
                 .IsEqualTo(element.Name, "element", "l", "Library element (<l>) required.")
                 .Validate();
 
-            string version = GetNonEmptyAttributeValueOrNull(element, "v");
-            if (version == null)
-            {
-                throw new ArgumentOutOfRangeException("element", "A v (version) attribute is required.");
-            }
+            string version = element.GetNonEmptyAttributeValue("v", "version");
+            string sourceType = element.GetNonEmptyAttributeValue("st", "source type");
 
-            string sourceType = GetNonEmptyAttributeValueOrNull(element, "st");
-            if (sourceType == null)
-            {
-                throw new ArgumentOutOfRangeException("element", "An st (source type) attribute is required.");
-            }
-
-            var items = element.Elements("i").Select(item => ToItem(item));
+            IEnumerable<Item> items = element.Elements("i").Select(item => ToItem(item));
             return new Library(version, sourceType, items);
         }
     }
