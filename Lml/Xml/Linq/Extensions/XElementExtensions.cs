@@ -8,7 +8,9 @@ namespace twopointzero.Lml.Xml.Linq.Extensions
         internal static void AddAttributeIfValueNonEmpty(this XElement self, XName name, object value)
         {
             if (value == null || (value is string && ((string)value).Length == 0))
+            {
                 return;
+            }
 
             self.Add(new XAttribute(name, value));
         }
