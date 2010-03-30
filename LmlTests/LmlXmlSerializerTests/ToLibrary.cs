@@ -18,7 +18,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
 
             var expected = new Library("1.0", "Unit Tests", Enumerable.Empty<Item>());
 
-            var actual = new LmlXmlSerializer().ToLibrary(library);
+            var actual = LmlXmlSerializer.ToLibrary(library);
 
             Assert.AreEqual(expected.Version, actual.Version);
             Assert.AreEqual(expected.SourceType, actual.SourceType);
@@ -49,7 +49,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                          null);
             var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
-            var actual = new LmlXmlSerializer().ToLibrary(library);
+            var actual = LmlXmlSerializer.ToLibrary(library);
 
             Assert.AreEqual(expected.Version, actual.Version);
             Assert.AreEqual(expected.SourceType, actual.SourceType);
@@ -80,7 +80,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                          @"C:\path\file3.ext", 743);
             var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
-            var actual = new LmlXmlSerializer().ToLibrary(library);
+            var actual = LmlXmlSerializer.ToLibrary(library);
 
             Assert.AreEqual(expected.Version, actual.Version);
             Assert.AreEqual(expected.SourceType, actual.SourceType);
@@ -94,7 +94,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                        new XAttribute("v", "1.0"),
                                        new XAttribute("st", string.Empty));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                        new XAttribute("v", string.Empty),
                                        new XAttribute("st", "Unit Tests"));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
             var library = new XElement("l",
                                        new XAttribute("v", "1.0"));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
 
         [Test]
@@ -122,20 +122,20 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
             var library = new XElement("l",
                                        new XAttribute("st", "Unit Tests"));
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
 
         [Test]
         public void GivenNonLibraryShouldThrowArgumentNullException()
         {
             var library = new XElement("z");
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToLibrary(library));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
 
         [Test]
         public void GivenNullLibraryShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LmlXmlSerializer().ToLibrary(null));
+            Assert.Throws<ArgumentNullException>(() => LmlXmlSerializer.ToLibrary(null));
         }
     }
 }

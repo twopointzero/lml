@@ -11,8 +11,7 @@ namespace twopointzero.AppleITunesXmlToLml
             using (var reader = new StreamReader(args[0]))
             {
                 var library = AppleITunesXmlImporter.ImportLibrary(reader, LibraryMode.Guest);
-                var serializer = new LmlXmlSerializer();
-                var element = serializer.ToXElement(library);
+                var element = LmlXmlSerializer.ToXElement(library);
                 element.Save(args[1]);
             }
         }

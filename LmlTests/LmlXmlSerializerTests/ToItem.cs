@@ -13,7 +13,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = Mother.CreateItemXElement("Artist", "Title", "0.42", "69", "2010-01-01T00:00:00", "Genre");
             var expected = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", null, null);
-            var actual = new LmlXmlSerializer().ToItem(item);
+            var actual = LmlXmlSerializer.ToItem(item);
             Assert.AreEqual(expected, actual);
         }
 
@@ -24,7 +24,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                                  @"C:\path\file.ext", "74");
             var expected = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", @"C:\path\file.ext",
                                     74);
-            var actual = new LmlXmlSerializer().ToItem(item);
+            var actual = LmlXmlSerializer.ToItem(item);
             Assert.AreEqual(expected, actual);
         }
 
@@ -33,7 +33,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = Mother.CreateItemXElement("", "", "", "", "", "", "", "");
             var expected = new Item(null, null, null, null, null, null, null, null);
-            var actual = new LmlXmlSerializer().ToItem(item);
+            var actual = LmlXmlSerializer.ToItem(item);
             Assert.AreEqual(expected, actual);
         }
 
@@ -42,7 +42,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = new XElement("i");
             var expected = new Item(null, null, null, null, null, null, null, null);
-            var actual = new LmlXmlSerializer().ToItem(item);
+            var actual = LmlXmlSerializer.ToItem(item);
             Assert.AreEqual(expected, actual);
         }
 
@@ -50,13 +50,13 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenNonItemShouldThrowArgumentNullException()
         {
             var item = new XElement("z");
-            Assert.Throws<ArgumentOutOfRangeException>(() => new LmlXmlSerializer().ToItem(item));
+            Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToItem(item));
         }
 
         [Test]
         public void GivenNullItemShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LmlXmlSerializer().ToItem(null));
+            Assert.Throws<ArgumentNullException>(() => LmlXmlSerializer.ToItem(null));
         }
     }
 }

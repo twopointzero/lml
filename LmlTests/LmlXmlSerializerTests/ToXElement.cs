@@ -18,7 +18,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                         new XAttribute("v", "1.0"),
                                         new XAttribute("st", "Unit Tests"));
 
-            var actual = new LmlXmlSerializer().ToXElement(library);
+            var actual = LmlXmlSerializer.ToXElement(library);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -27,7 +27,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", null, null);
             var expected = Mother.CreateItemXElement("Artist", "Title", "0.42", "69", "2010-01-01T00:00:00", "Genre");
-            var actual = new LmlXmlSerializer().ToXElement(item);
+            var actual = LmlXmlSerializer.ToXElement(item);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -52,7 +52,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                         expectedItem2,
                                         expectedItem3);
 
-            var actual = new LmlXmlSerializer().ToXElement(library);
+            var actual = LmlXmlSerializer.ToXElement(library);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -62,7 +62,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
             var item = new Item("Artist", "Title", 0.42, 69, new DateTime(2010, 1, 1), "Genre", @"C:\path\file.ext", 74);
             var expected = Mother.CreateItemXElement("Artist", "Title", "0.42", "69", "2010-01-01T00:00:00", "Genre",
                                                      @"C:\path\file.ext", "74");
-            var actual = new LmlXmlSerializer().ToXElement(item);
+            var actual = LmlXmlSerializer.ToXElement(item);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -71,7 +71,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = new Item("", "", null, null, null, "", "", null);
             var expected = new XElement("i");
-            var actual = new LmlXmlSerializer().ToXElement(item);
+            var actual = LmlXmlSerializer.ToXElement(item);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -80,7 +80,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         {
             var item = new Item(null, null, null, null, null, null, null, null);
             var expected = new XElement("i");
-            var actual = new LmlXmlSerializer().ToXElement(item);
+            var actual = LmlXmlSerializer.ToXElement(item);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
@@ -108,20 +108,20 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                         expectedItem2,
                                         expectedItem3);
 
-            var actual = new LmlXmlSerializer().ToXElement(library);
+            var actual = LmlXmlSerializer.ToXElement(library);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }
 
         [Test]
         public void GivenNullItemShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LmlXmlSerializer().ToXElement((Item)null));
+            Assert.Throws<ArgumentNullException>(() => LmlXmlSerializer.ToXElement((Item)null));
         }
 
         [Test]
         public void GivenNullLibraryShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new LmlXmlSerializer().ToXElement((Library)null));
+            Assert.Throws<ArgumentNullException>(() => LmlXmlSerializer.ToXElement((Library)null));
         }
     }
 }

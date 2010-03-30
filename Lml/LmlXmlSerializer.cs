@@ -9,7 +9,7 @@ namespace twopointzero.Lml
 {
     public class LmlXmlSerializer
     {
-        public XElement ToXElement(Item item)
+        public static XElement ToXElement(Item item)
         {
             Validator.IsNotNull(item, "item");
 
@@ -25,7 +25,7 @@ namespace twopointzero.Lml
             return element;
         }
 
-        public XElement ToXElement(Library library)
+        public static XElement ToXElement(Library library)
         {
             Validator.IsNotNull(library, "library");
 
@@ -39,7 +39,7 @@ namespace twopointzero.Lml
             return new XElement("l", objects);
         }
 
-        public Item ToItem(XElement element)
+        public static Item ToItem(XElement element)
         {
             Validator.Create()
                 .IsNotNull(element, "element")
@@ -58,7 +58,7 @@ namespace twopointzero.Lml
             return new Item(artist, title, rating, playCount, lastPlayed, genre, location, duration);
         }
 
-        public Library ToLibrary(XElement element)
+        public static Library ToLibrary(XElement element)
         {
             Validator.Create()
                 .IsNotNull(element, "element")
