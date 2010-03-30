@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using twopointzero.Lml.Validation;
+using twopointzero.Validation;
 
 namespace twopointzero.Lml
 {

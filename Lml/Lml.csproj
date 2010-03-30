@@ -56,11 +56,13 @@
     <Compile Include="Library.cs" />
     <Compile Include="LmlXmlSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validation\AggregateException.cs" />
-    <Compile Include="Validation\Validator.cs" />
-    <Compile Include="Validation\ValidatorInstance.cs" />
-    <Compile Include="Validation\ValidatorInstanceExtensions.cs" />
     <Compile Include="Xml\Linq\Extensions\XElementExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Packages\twopointzero.Validation\Validation\Validation.csproj">
+      <Project>{DF89EBF0-6F5B-4E26-A4F0-0851E9C9A78F}</Project>
+      <Name>Validation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

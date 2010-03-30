@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using twopointzero.Lml.Validation;
 using twopointzero.Lml.Xml.Linq.Extensions;
+using twopointzero.Validation;
 
 namespace twopointzero.Lml
 {

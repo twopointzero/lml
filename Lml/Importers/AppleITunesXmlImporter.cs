@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using twopointzero.Lml.Validation;
+using twopointzero.Validation;
 
 namespace twopointzero.Lml.Importers
 {
@@ -16,9 +16,9 @@ namespace twopointzero.Lml.Importers
         {
             Validator.IsNotNull(readerAtStartOfDocument, "readerAtStartOfDocument");
 
-            var doc = XDocument.Load(readerAtStartOfDocument);
+            XDocument doc = XDocument.Load(readerAtStartOfDocument);
 
-            var documentType = doc.DocumentType;
+            XDocumentType documentType = doc.DocumentType;
             var requiredDocumentType = new XDocumentType("plist", "-//Apple Computer//DTD PLIST 1.0//EN",
                                                          "http://www.apple.com/DTDs/PropertyList-1.0.dtd", "");
             if (!XNode.DeepEquals(documentType, requiredDocumentType))
@@ -28,14 +28,14 @@ namespace twopointzero.Lml.Importers
                                                       @"<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">");
             }
 
-            var root = doc.Element("plist");
+            XElement root = doc.Element("plist");
             if (root == null)
             {
                 throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
                                                       "The provided TextReader's document does not contain the required plist root node.");
             }
 
-            var version = root.Attribute("version");
+            XAttribute version = root.Attribute("version");
             if (version == null || version.Value != LibraryVersion)
             {
                 throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
@@ -49,7 +49,7 @@ namespace twopointzero.Lml.Importers
         {
             Validator.IsNotNull(plistRootNode, "plistRootNode");
 
-            var mainDict = plistRootNode.Element("dict");
+            XElement mainDict = plistRootNode.Element("dict");
             if (mainDict == null)
             {
                 throw new ArgumentOutOfRangeException("plistRootNode",
@@ -74,7 +74,7 @@ namespace twopointzero.Lml.Importers
                 return (string)(XElement)node;
             }
 
-            var localName = element.Name.LocalName;
+            string localName = element.Name.LocalName;
             switch (localName)
             {
                 case "string":
@@ -102,7 +102,7 @@ namespace twopointzero.Lml.Importers
 
             XElement plistRootNode = GetPlistRootNode(reader);
             XElement mainDictNode = GetPlistDictNode(plistRootNode);
-            var metadata = GetPrimitiveEntries(mainDictNode);
+            IDictionary<string, object> metadata = GetPrimitiveEntries(mainDictNode);
 
             object version;
             if (!metadata.TryGetValue("Application Version", out version))
@@ -143,7 +143,7 @@ namespace twopointzero.Lml.Importers
 
         private static Item GetItem(XElement dict, LibraryMode libraryMode)
         {
-            var entries = GetPrimitiveEntries(dict);
+            IDictionary<string, object> entries = GetPrimitiveEntries(dict);
 
             object artist;
             entries.TryGetValue("Artist", out artist);
