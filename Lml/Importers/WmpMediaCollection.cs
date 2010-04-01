@@ -11,9 +11,7 @@ namespace twopointzero.Lml.Importers
 
         public WmpMediaCollection(string mediaType)
         {
-            Validator.Create()
-                .IsNotNullOrEmpty(mediaType, "mediaType")
-                .Validate();
+            Validator.IsNotNullOrEmpty(mediaType, "mediaType");
 
             IWMPPlayer player = new WindowsMediaPlayerClass();
             VersionInfo = player.versionInfo;
