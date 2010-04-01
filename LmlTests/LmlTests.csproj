@@ -59,6 +59,9 @@
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveEntries.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveValue.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\ImportLibrary.cs" />
+    <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportDateTime.cs" />
+    <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportLibrary.cs" />
+    <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportRating.cs" />
     <Compile Include="LmlXmlSerializerTests\Mother.cs" />
     <Compile Include="LmlXmlSerializerTests\ToItem.cs" />
     <Compile Include="LmlXmlSerializerTests\ToLibrary.cs" />

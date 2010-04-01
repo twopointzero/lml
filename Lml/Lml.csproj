@@ -45,12 +45,19 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="wmppia, Version=9.0.0.3095, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Packages\WMPSDK9\redist\wmppia.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Importers\AppleITunesXmlImporter.cs" />
+    <Compile Include="Importers\WindowsMediaPlayerImporter.cs" />
+    <Compile Include="Importers\WmpMedia.cs" />
+    <Compile Include="Importers\WmpMediaCollection.cs" />
     <Compile Include="LibraryMode.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Library.cs" />
