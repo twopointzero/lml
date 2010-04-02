@@ -21,7 +21,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         }
 
         private static void FindItemAndAssertPropertyEquality(IEnumerable<Item> items, string artist, string title,
-                                                              double? rating, int? playCount, DateTime? lastPlayed,
+                                                              double? rating, DateTime? dateAdded, int? playCount, DateTime? lastPlayed,
                                                               string genre, string location, long? duration)
         {
             var item = items.First(o => o.Title == title);
@@ -35,6 +35,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                 Assert.IsNotNull(item.Rating);
                 Assert.AreEqual(rating.Value, item.Rating.Value, 0.001);
             }
+            Assert.AreEqual(dateAdded, item.DateAdded);
             Assert.AreEqual(playCount, item.PlayCount);
             Assert.AreEqual(lastPlayed, item.LastPlayed);
             Assert.AreEqual(genre, item.Genre);
@@ -62,6 +63,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "dj twopointzero", // artist
                             "Maraschino", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 55, 00, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             "Podcast", // genre
@@ -73,6 +75,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Nine Inch Nails", // artist
                             "999,999", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -84,6 +87,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Depeche Mode", // artist
                             "Love, In Itself", // title
                             1, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -95,6 +99,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Vitalic", // artist
                             "See The Sea (Red)", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             "Electro", // genre
@@ -106,6 +111,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Nine Inch Nails", // artist
                             "1,000,000", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -117,6 +123,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Depeche Mode", // artist
                             "More Than A Party", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -128,6 +135,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Vitalic", // artist
                             "Poison Lips", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             1, // playCount
                             new DateTime(2010, 3, 23, 20, 54, 50, DateTimeKind.Utc), // lastPlayed
                             "Electro", // genre
@@ -151,6 +159,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "dj twopointzero", // artist
                             "Maraschino", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 55, 00, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             "Podcast", // genre
@@ -162,6 +171,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Nine Inch Nails", // artist
                             "999,999", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -173,6 +183,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Depeche Mode", // artist
                             "Love, In Itself", // title
                             1, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -184,6 +195,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Vitalic", // artist
                             "See The Sea (Red)", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             "Electro", // genre
@@ -195,6 +207,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Nine Inch Nails", // artist
                             "1,000,000", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -206,6 +219,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Depeche Mode", // artist
                             "More Than A Party", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             null, // playCount
                             null, // lastPlayed
                             null, // genre
@@ -217,6 +231,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             "Vitalic", // artist
                             "Poison Lips", // title
                             null, // rating
+                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
                             1, // playCount
                             new DateTime(2010, 3, 23, 20, 54, 50, DateTimeKind.Utc), // lastPlayed
                             "Electro", // genre
