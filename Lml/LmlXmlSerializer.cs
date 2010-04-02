@@ -7,7 +7,7 @@ using twopointzero.Validation;
 
 namespace twopointzero.Lml
 {
-    public class LmlXmlSerializer
+    public static class LmlXmlSerializer
     {
         public static XElement ToXElement(Item item)
         {
@@ -17,6 +17,7 @@ namespace twopointzero.Lml
             element.AddAttributeIfValueNonEmpty("a", item.Artist);
             element.AddAttributeIfValueNonEmpty("t", item.Title);
             element.AddAttributeIfValueNonEmpty("r", item.Rating);
+            element.AddAttributeIfValueNonEmpty("da", item.DateAdded);
             element.AddAttributeIfValueNonEmpty("pc", item.PlayCount);
             element.AddAttributeIfValueNonEmpty("lp", item.LastPlayed);
             element.AddAttributeIfValueNonEmpty("g", item.Genre);
@@ -50,12 +51,13 @@ namespace twopointzero.Lml
             string artist = element.GetNonEmptyAttributeValueOrNull("a");
             string title = element.GetNonEmptyAttributeValueOrNull("t");
             double? rating = element.GetAttributeValueAsNullableDouble("r");
+            DateTime? dateAdded = element.GetAttributeValueAsNullableDateTime("da");
             int? playCount = element.GetAttributeValueAsNullableInt32("pc");
             DateTime? lastPlayed = element.GetAttributeValueAsNullableDateTime("lp");
             string genre = element.GetNonEmptyAttributeValueOrNull("g");
             string location = element.GetNonEmptyAttributeValueOrNull("l");
             int? duration = element.GetAttributeValueAsNullableInt32("d");
-            return new Item(artist, title, rating, playCount, lastPlayed, genre, location, duration);
+            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
         }
 
         public static Library ToLibrary(XElement element)

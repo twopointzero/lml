@@ -51,18 +51,19 @@ namespace twopointzero.LmlTests.Importers.WindowsMediaPlayerImporterTests
         [Test]
         public void GivenThreeInGuestModeShouldReturnTheExpectedItems()
         {
-            var media1 = new WmpMedia("artist1", "title", "", "4/1/2010 4:17:32 PM", "", "", "", @"C:\Data\sample.file",
-                                      "123.456");
-            var media2 = new WmpMedia("artist2", "title", "0", "4/1/2010 4:17:32 PM", "0", "4/1/2010 4:17:32 PM", "",
+            var media1 = new WmpMedia("artist1", "title", "", "", "", "", "", @"C:\Data\sample.file", "123.456");
+            var media2 = new WmpMedia("artist2", "title", "0", "4/1/2009 4:17:32 PM", "0", "4/1/2010 4:17:32 PM", "",
                                       @"C:\Data\sample.file", "123.456");
-            var media3 = new WmpMedia("artist3", "title", "50", "4/1/2010 4:17:32 PM", "42", "", "Genre",
-                                      @"C:\Data\sample.file", "123.456");
+            var media3 = new WmpMedia("artist3", "title", "50", "4/1/2009 4:17:32 PM", "42", "4/1/2010 4:17:32 PM",
+                                      "Genre", @"C:\Data\sample.file", "123.456");
             IEnumerable<WmpMedia> media = new[] { media1, media2, media3 };
             var input = new WmpMediaCollection("12.0.7600.16415", media);
 
-            var expected1 = new Item("artist1", "title", null, null, null, null, null, null);
-            var expected2 = new Item("artist2", "title", null, 0, new DateTime(2010, 4, 1, 16, 17, 32), null, null, null);
-            var expected3 = new Item("artist3", "title", 0.6, 42, null, "Genre", null, null);
+            var expected1 = new Item("artist1", "title", null, null, null, null, null, null, null);
+            var expected2 = new Item("artist2", "title", null, new DateTime(2009, 4, 1, 16, 17, 32), 0,
+                                     new DateTime(2010, 4, 1, 16, 17, 32), null, null, null);
+            var expected3 = new Item("artist3", "title", 0.6, new DateTime(2009, 4, 1, 16, 17, 32), 42,
+                                     new DateTime(2010, 4, 1, 16, 17, 32), "Genre", null, null);
 
             var library = WindowsMediaPlayerImporter.ImportLibrary(input, LibraryMode.Guest);
             var results = library.Items.ToArray();
@@ -75,19 +76,19 @@ namespace twopointzero.LmlTests.Importers.WindowsMediaPlayerImporterTests
         [Test]
         public void GivenThreeInHostModeShouldReturnTheExpectedItems()
         {
-            var media1 = new WmpMedia("artist1", "title", "", "4/1/2010 4:17:32 PM", "", "", "", @"C:\Data\sample.file",
-                                      "123.456");
-            var media2 = new WmpMedia("artist2", "title", "0", "4/1/2010 4:17:32 PM", "0", "4/1/2010 4:17:32 PM", "",
+            var media1 = new WmpMedia("artist1", "title", "", "", "", "", "", @"C:\Data\sample.file", "123.456");
+            var media2 = new WmpMedia("artist2", "title", "0", "4/1/2009 4:17:32 PM", "0", "4/1/2010 4:17:32 PM", "",
                                       @"C:\Data\sample.file", "123.456");
-            var media3 = new WmpMedia("artist3", "title", "50", "4/1/2010 4:17:32 PM", "42", "", "Genre",
+            var media3 = new WmpMedia("artist3", "title", "50", "4/1/2009 4:17:32 PM", "42", "", "Genre",
                                       @"C:\Data\sample.file", "123.456");
             IEnumerable<WmpMedia> media = new[] { media1, media2, media3 };
             var input = new WmpMediaCollection("12.0.7600.16415", media);
 
-            var expected1 = new Item("artist1", "title", null, null, null, null, @"C:\Data\sample.file", 123456);
-            var expected2 = new Item("artist2", "title", null, 0, new DateTime(2010, 4, 1, 16, 17, 32), null,
+            var expected1 = new Item("artist1", "title", null, null, null, null, null, @"C:\Data\sample.file", 123456);
+            var expected2 = new Item("artist2", "title", null, new DateTime(2009, 4, 1, 16, 17, 32), 0,
+                                     new DateTime(2010, 4, 1, 16, 17, 32), null, @"C:\Data\sample.file", 123456);
+            var expected3 = new Item("artist3", "title", 0.6, new DateTime(2009, 4, 1, 16, 17, 32), 42, null, "Genre",
                                      @"C:\Data\sample.file", 123456);
-            var expected3 = new Item("artist3", "title", 0.6, 42, null, "Genre", @"C:\Data\sample.file", 123456);
 
             var library = WindowsMediaPlayerImporter.ImportLibrary(input, LibraryMode.Host);
             var results = library.Items.ToArray();

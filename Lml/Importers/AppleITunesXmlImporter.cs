@@ -154,6 +154,9 @@ namespace twopointzero.Lml.Importers
             object rating;
             entries.TryGetValue("Rating", out rating);
 
+            object dateAdded;
+            entries.TryGetValue("Date Added", out dateAdded);
+
             object playCount;
             entries.TryGetValue("Play Count", out playCount);
 
@@ -171,8 +174,9 @@ namespace twopointzero.Lml.Importers
                 entries.TryGetValue("Total Time", out duration);
             }
 
-            return new Item(artist as string, title as string, ImportRating(rating), ImportPlayCount(playCount),
-                            lastPlayed as DateTime?, genre as string, location as string, duration as long?);
+            return new Item(artist as string, title as string, ImportRating(rating), dateAdded as DateTime?,
+                            ImportPlayCount(playCount), lastPlayed as DateTime?, genre as string, location as string,
+                            duration as long?);
         }
 
         private static double? ImportRating(object rating)

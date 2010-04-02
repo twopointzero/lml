@@ -33,6 +33,7 @@ namespace twopointzero.Lml.Importers
             string artist = ImportString(wmpMedia.DisplayArtist);
             string title = ImportString(wmpMedia.Title);
             double? rating = ImportRating(wmpMedia.UserRating);
+            DateTime? dateAdded = ImportDateTime(wmpMedia.AcquisitionTime);
             int? playCount = ImportNullableInt32(wmpMedia.UserPlayCount);
             DateTime? lastPlayed = ImportDateTime(wmpMedia.UserLastPlayedTime);
             string genre = ImportString(wmpMedia.WmGenre);
@@ -45,7 +46,7 @@ namespace twopointzero.Lml.Importers
                 duration = ImportDuration(wmpMedia.Duration);
             }
 
-            return new Item(artist, title, rating, playCount, lastPlayed, genre, location, duration);
+            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
         }
 
         private static string ImportString(string value)

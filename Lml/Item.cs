@@ -5,6 +5,7 @@ namespace twopointzero.Lml
     public class Item : IEquatable<Item>
     {
         private readonly string _artist;
+        private readonly DateTime? _dateAdded;
         private readonly long? _duration;
         private readonly string _genre;
         private readonly DateTime? _lastPlayed;
@@ -13,12 +14,13 @@ namespace twopointzero.Lml
         private readonly double? _rating;
         private readonly string _title;
 
-        public Item(string artist, string title, double? rating, int? playCount, DateTime? lastPlayed, string genre,
-                    string location, long? duration)
+        public Item(string artist, string title, double? rating, DateTime? dateAdded, int? playCount,
+                    DateTime? lastPlayed, string genre, string location, long? duration)
         {
             _artist = artist;
             _title = title;
             _rating = rating;
+            _dateAdded = dateAdded;
             _playCount = playCount;
             _lastPlayed = lastPlayed;
             _genre = genre;
@@ -39,6 +41,11 @@ namespace twopointzero.Lml
         public double? Rating
         {
             get { return _rating; }
+        }
+
+        public DateTime? DateAdded
+        {
+            get { return _dateAdded; }
         }
 
         public int? PlayCount
@@ -79,7 +86,8 @@ namespace twopointzero.Lml
             {
                 return true;
             }
-            return Equals(other._artist, _artist) && other._duration.Equals(_duration) && Equals(other._genre, _genre) &&
+            return Equals(other._artist, _artist) && other._dateAdded.Equals(_dateAdded) &&
+                   other._duration.Equals(_duration) && Equals(other._genre, _genre) &&
                    other._lastPlayed.Equals(_lastPlayed) && Equals(other._location, _location) &&
                    other._playCount.Equals(_playCount) && other._rating.Equals(_rating) && Equals(other._title, _title);
         }
@@ -109,6 +117,7 @@ namespace twopointzero.Lml
             unchecked
             {
                 int result = (_artist != null ? _artist.GetHashCode() : 0);
+                result = (result * 397) ^ (_dateAdded.HasValue ? _dateAdded.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_duration.HasValue ? _duration.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_genre != null ? _genre.GetHashCode() : 0);
                 result = (result * 397) ^ (_lastPlayed.HasValue ? _lastPlayed.Value.GetHashCode() : 0);
