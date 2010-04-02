@@ -41,6 +41,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             Assert.AreEqual(genre, item.Genre);
             Assert.AreEqual(location, item.Location);
             Assert.AreEqual(duration, item.Duration);
+
+            var expected = new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
+            Assert.AreEqual(expected, item);
         }
 
         [Test]
