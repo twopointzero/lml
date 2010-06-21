@@ -11,17 +11,18 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
     [TestFixture]
     public class ImportLibrary
     {
-        private static void ImportLibraryFromSampleFile(LibraryMode libraryMode, Action<Library> libraryAction)
+        private static void ImportLibraryFromSampleFile(Action<Library> libraryAction)
         {
             using (var reader = new StreamReader(@"Importers\AppleITunesXmlImporterTests\mac iTunes Music Library.xml"))
             {
-                var library = AppleITunesXmlImporter.ImportLibrary(reader, libraryMode);
+                var library = AppleITunesXmlImporter.ImportLibrary(reader);
                 libraryAction(library);
             }
         }
 
         private static void FindItemAndAssertPropertyEquality(IEnumerable<Item> items, string artist, string title,
-                                                              double? rating, DateTime? dateAdded, int? playCount, DateTime? lastPlayed,
+                                                              double? rating, DateTime? dateAdded, int? playCount,
+                                                              DateTime? lastPlayed,
                                                               string genre, string location, long? duration)
         {
             var item = items.First(o => o.Title == title);
@@ -49,110 +50,13 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         [Test]
         public void GivenNullShouldThrowArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => AppleITunesXmlImporter.ImportLibrary(null, LibraryMode.Host));
+            Assert.Throws<ArgumentNullException>(() => AppleITunesXmlImporter.ImportLibrary(null));
         }
 
         [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedGuestModeItems()
+        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedItems()
         {
             ImportLibraryFromSampleFile(
-                LibraryMode.Guest,
-                library =>
-                    {
-                        IEnumerable<Item> items = library.Items.ToList();
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "dj twopointzero", // artist
-                            "Maraschino", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 55, 00, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            "Podcast", // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Nine Inch Nails", // artist
-                            "999,999", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            null, // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Depeche Mode", // artist
-                            "Love, In Itself", // title
-                            1, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            null, // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Vitalic", // artist
-                            "See The Sea (Red)", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            "Electro", // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Nine Inch Nails", // artist
-                            "1,000,000", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            null, // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Depeche Mode", // artist
-                            "More Than A Party", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            null, // genre
-                            null, // location
-                            null); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
-                            "Vitalic", // artist
-                            "Poison Lips", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 56, 22, DateTimeKind.Utc), // dateAdded
-                            1, // playCount
-                            new DateTime(2010, 3, 23, 20, 54, 50, DateTimeKind.Utc), // lastPlayed
-                            "Electro", // genre
-                            null, // location
-                            null); // duration
-                    }
-                );
-        }
-
-        [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedHostModeItems()
-        {
-            ImportLibraryFromSampleFile(
-                LibraryMode.Host,
                 library =>
                     {
                         IEnumerable<Item> items = library.Items.ToList();
@@ -247,19 +151,19 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         [Test]
         public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedLibrarySourceType()
         {
-            ImportLibraryFromSampleFile(LibraryMode.Host, library => Assert.AreEqual("iTunes 9.0.3", library.SourceType));
+            ImportLibraryFromSampleFile(library => Assert.AreEqual("iTunes 9.0.3", library.SourceType));
         }
 
         [Test]
         public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedLibraryVersion()
         {
-            ImportLibraryFromSampleFile(LibraryMode.Host, library => Assert.AreEqual("1.0", library.Version));
+            ImportLibraryFromSampleFile(library => Assert.AreEqual("1.0", library.Version));
         }
 
         [Test]
         public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedNumberOfItems()
         {
-            ImportLibraryFromSampleFile(LibraryMode.Host, library => Assert.AreEqual(7, library.Items.Count()));
+            ImportLibraryFromSampleFile(library => Assert.AreEqual(7, library.Items.Count()));
         }
     }
 }

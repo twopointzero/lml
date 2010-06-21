@@ -96,7 +96,7 @@ namespace twopointzero.Lml.Importers
             }
         }
 
-        public static Library ImportLibrary(TextReader reader, LibraryMode libraryMode)
+        public static Library ImportLibrary(TextReader reader)
         {
             Validator.IsNotNull(reader, "reader");
 
@@ -131,17 +131,17 @@ namespace twopointzero.Lml.Importers
                                                       "The provided document's Tracks value is of the wrong type.");
             }
 
-            return new Library(LibraryVersion, "iTunes " + version, GetItems(tracksElement, libraryMode));
+            return new Library(LibraryVersion, "iTunes " + version, GetItems(tracksElement));
         }
 
-        private static IEnumerable<Item> GetItems(XElement tracks, LibraryMode libraryMode)
+        private static IEnumerable<Item> GetItems(XElement tracks)
         {
             return tracks.Elements("dict")
-                .Select(dict => GetItem(dict, libraryMode))
+                .Select(dict => GetItem(dict))
                 .Where(item => item != null);
         }
 
-        private static Item GetItem(XElement dict, LibraryMode libraryMode)
+        private static Item GetItem(XElement dict)
         {
             var entries = GetPrimitiveEntries(dict);
 
@@ -167,12 +167,10 @@ namespace twopointzero.Lml.Importers
             entries.TryGetValue("Genre", out genre);
 
             object location = null;
+            entries.TryGetValue("Location", out location);
+
             object duration = null;
-            if (libraryMode == LibraryMode.Host)
-            {
-                entries.TryGetValue("Location", out location);
-                entries.TryGetValue("Total Time", out duration);
-            }
+            entries.TryGetValue("Total Time", out duration);
 
             return new Item(artist as string, title as string, ImportRating(rating), dateAdded as DateTime?,
                             ImportPlayCount(playCount), lastPlayed as DateTime?, genre as string, location as string,

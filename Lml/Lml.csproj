@@ -58,7 +58,6 @@
     <Compile Include="Importers\WindowsMediaPlayerImporter.cs" />
     <Compile Include="Importers\WmpMedia.cs" />
     <Compile Include="Importers\WmpMediaCollection.cs" />
-    <Compile Include="LibraryMode.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="LmlXmlSerializer.cs" />

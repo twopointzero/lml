@@ -10,25 +10,25 @@ namespace twopointzero.Lml.Importers
     {
         private const string LibraryVersion = "1.0";
 
-        public static Library ImportLibrary(LibraryMode libraryMode)
+        public static Library ImportLibrary()
         {
-            return ImportLibrary(new WmpMediaCollection("audio"), libraryMode);
+            return ImportLibrary(new WmpMediaCollection("audio"));
         }
 
-        internal static Library ImportLibrary(WmpMediaCollection wmpMediaCollection, LibraryMode libraryMode)
+        internal static Library ImportLibrary(WmpMediaCollection wmpMediaCollection)
         {
             Validator.IsNotNull(wmpMediaCollection, "wmpMediaCollection");
 
             return new Library(LibraryVersion, "Windows Media Player " + wmpMediaCollection.VersionInfo,
-                               GetItems(wmpMediaCollection.Media, libraryMode));
+                               GetItems(wmpMediaCollection.Media));
         }
 
-        private static IEnumerable<Item> GetItems(IEnumerable<WmpMedia> media, LibraryMode libraryMode)
+        private static IEnumerable<Item> GetItems(IEnumerable<WmpMedia> media)
         {
-            return media.Select(o => GetItem(o, libraryMode));
+            return media.Select(o => GetItem(o));
         }
 
-        private static Item GetItem(WmpMedia wmpMedia, LibraryMode libraryMode)
+        private static Item GetItem(WmpMedia wmpMedia)
         {
             string artist = ImportString(wmpMedia.DisplayArtist);
             string title = ImportString(wmpMedia.Title);
@@ -37,14 +37,8 @@ namespace twopointzero.Lml.Importers
             int? playCount = ImportNullableInt32(wmpMedia.UserPlayCount);
             DateTime? lastPlayed = ImportDateTime(wmpMedia.UserLastPlayedTime);
             string genre = ImportString(wmpMedia.WmGenre);
-            string location = null;
-            long? duration = null;
-
-            if (libraryMode == LibraryMode.Host)
-            {
-                location = ImportString(wmpMedia.SourceUrl);
-                duration = ImportDuration(wmpMedia.Duration);
-            }
+            string location = ImportString(wmpMedia.SourceUrl);
+            long? duration = ImportDuration(wmpMedia.Duration);
 
             return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
         }
