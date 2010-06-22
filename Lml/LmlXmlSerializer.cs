@@ -24,7 +24,7 @@ namespace twopointzero.Lml
             element.AddAttributeIfValueNonEmpty("l", item.Location);
             if (item.Duration != null)
             {
-                element.AddAttributeIfValueNonEmpty("d", item.Duration.Value.TotalSeconds);
+                element.AddAttributeIfValueNonEmpty("ds", item.Duration.Value.TotalSeconds);
             }
             return element;
         }
@@ -59,7 +59,7 @@ namespace twopointzero.Lml
             DateTime? lastPlayed = element.GetAttributeValueAsNullableDateTime("lp");
             string genre = element.GetNonEmptyAttributeValueOrNull("g");
             string location = element.GetNonEmptyAttributeValueOrNull("l");
-            double? durationInSeconds = element.GetAttributeValueAsNullableDouble("d");
+            double? durationInSeconds = element.GetAttributeValueAsNullableDouble("ds");
             TimeSpan? durationTimespan = durationInSeconds == null
                                              ? (TimeSpan?)null
                                              : TimeSpan.FromSeconds(durationInSeconds.Value);

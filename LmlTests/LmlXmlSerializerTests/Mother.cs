@@ -17,7 +17,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                 new XAttribute("lp", lastPlayed),
                                 new XAttribute("g", genre),
                                 new XAttribute("l", location),
-                                new XAttribute("d", duration));
+                                new XAttribute("ds", duration));
         }
     }
 }
