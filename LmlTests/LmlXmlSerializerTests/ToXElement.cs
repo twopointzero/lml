@@ -26,9 +26,9 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenItemShouldProduceExpectedResult()
         {
             var item = new Item("Artist", "Title", 0.42, new DateTime(2009, 1, 1), 69, new DateTime(2010, 1, 1), "Genre",
-                                @"C:\path\file.ext", TimeSpan.FromSeconds(74));
+                                @"C:\path\file.ext", TimeSpan.FromSeconds(74.001));
             var expected = Mother.CreateItemXElement("Artist", "Title", "0.42", "2009-01-01T00:00:00", "69",
-                                                     "2010-01-01T00:00:00", "Genre", @"C:\path\file.ext", "74");
+                                                     "2010-01-01T00:00:00", "Genre", @"C:\path\file.ext", "74.001");
             var actual = LmlXmlSerializer.ToXElement(item);
             Assert.IsTrue(XNode.DeepEquals(expected, actual));
         }

@@ -24,7 +24,7 @@ namespace twopointzero.Lml
             element.AddAttributeIfValueNonEmpty("l", item.Location);
             if (item.Duration != null)
             {
-                element.AddAttributeIfValueNonEmpty("ds", item.Duration.Value.TotalSeconds);
+                element.AddAttributeIfValueNonEmpty("ds", item.Duration.Value.TotalSeconds.ToString("0.###"));
             }
             return element;
         }
