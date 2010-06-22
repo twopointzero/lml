@@ -59,11 +59,13 @@ namespace twopointzero.LmlTests.Importers.WindowsMediaPlayerImporterTests
             IEnumerable<WmpMedia> media = new[] { media1, media2, media3 };
             var input = new WmpMediaCollection("12.0.7600.16415", media);
 
-            var expected1 = new Item("artist1", "title", null, null, null, null, null, @"C:\Data\sample.file", 123456);
+            var expected1 = new Item("artist1", "title", null, null, null, null, null, @"C:\Data\sample.file",
+                                     TimeSpan.FromSeconds(123.456));
             var expected2 = new Item("artist2", "title", null, new DateTime(2009, 4, 1, 16, 17, 32), 0,
-                                     new DateTime(2010, 4, 1, 16, 17, 32), null, @"C:\Data\sample.file", 123456);
+                                     new DateTime(2010, 4, 1, 16, 17, 32), null, @"C:\Data\sample.file",
+                                     TimeSpan.FromSeconds(123.456));
             var expected3 = new Item("artist3", "title", 0.6, new DateTime(2009, 4, 1, 16, 17, 32), 42, null, "Genre",
-                                     @"C:\Data\sample.file", 123456);
+                                     @"C:\Data\sample.file", TimeSpan.FromSeconds(123.456));
 
             var library = WindowsMediaPlayerImporter.ImportLibrary(input);
             var results = library.Items.ToArray();

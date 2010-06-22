@@ -23,7 +23,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         private static void FindItemAndAssertPropertyEquality(IEnumerable<Item> items, string artist, string title,
                                                               double? rating, DateTime? dateAdded, int? playCount,
                                                               DateTime? lastPlayed,
-                                                              string genre, string location, long? duration)
+                                                              string genre, string location, TimeSpan? duration)
         {
             var item = items.First(o => o.Title == title);
             Assert.AreEqual(artist, item.Artist);
@@ -71,7 +71,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             "Podcast", // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Podcasts/dj%20twopointzero%20%C2%BB%20Podcasts/Maraschino.m4a",
-                            1780041); // duration
+                            TimeSpan.FromMilliseconds(1780041)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -83,7 +83,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Nine%20Inch%20Nails/The%20Slip/1-01%20999,999.m4a",
-                            85159); // duration
+                            TimeSpan.FromMilliseconds(85159)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -95,7 +95,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Depeche%20Mode/Construction%20Time%20Again/01%20Love,%20In%20Itself.m4a",
-                            269840); // duration
+                            TimeSpan.FromMilliseconds(269840)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -107,7 +107,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             "Electro", // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Vitalic/Flashmob/01%20See%20The%20Sea%20(Red).m4a",
-                            244666); // duration
+                            TimeSpan.FromMilliseconds(244666)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -119,7 +119,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Nine%20Inch%20Nails/The%20Slip/1-02%201,000,000.m4a",
-                            236197); // duration
+                            TimeSpan.FromMilliseconds(236197)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -131,7 +131,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Depeche%20Mode/Construction%20Time%20Again/02%20More%20Than%20A%20Party.m4a",
-                            285453); // duration
+                            TimeSpan.FromMilliseconds(285453)); // duration
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -143,7 +143,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             new DateTime(2010, 3, 23, 20, 54, 50, DateTimeKind.Utc), // lastPlayed
                             "Electro", // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Vitalic/Flashmob/02%20Poison%20Lips.m4a",
-                            232240); // duration
+                            TimeSpan.FromMilliseconds(232240)); // duration
                     }
                 );
         }

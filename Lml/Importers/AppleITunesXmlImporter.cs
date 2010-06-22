@@ -166,15 +166,18 @@ namespace twopointzero.Lml.Importers
             object genre;
             entries.TryGetValue("Genre", out genre);
 
-            object location = null;
+            object location;
             entries.TryGetValue("Location", out location);
 
-            object duration = null;
-            entries.TryGetValue("Total Time", out duration);
+            object durationInMilliseconds;
+            entries.TryGetValue("Total Time", out durationInMilliseconds);
+            TimeSpan? duration = durationInMilliseconds == null
+                                     ? (TimeSpan?)null
+                                     : TimeSpan.FromMilliseconds((long)durationInMilliseconds);
 
             return new Item(artist as string, title as string, ImportRating(rating), dateAdded as DateTime?,
                             ImportPlayCount(playCount), lastPlayed as DateTime?, genre as string, location as string,
-                            duration as long?);
+                            duration);
         }
 
         private static double? ImportRating(object rating)

@@ -22,7 +22,10 @@ namespace twopointzero.Lml
             element.AddAttributeIfValueNonEmpty("lp", item.LastPlayed);
             element.AddAttributeIfValueNonEmpty("g", item.Genre);
             element.AddAttributeIfValueNonEmpty("l", item.Location);
-            element.AddAttributeIfValueNonEmpty("d", item.Duration);
+            if (item.Duration != null)
+            {
+                element.AddAttributeIfValueNonEmpty("d", item.Duration.Value.TotalSeconds);
+            }
             return element;
         }
 
@@ -56,8 +59,12 @@ namespace twopointzero.Lml
             DateTime? lastPlayed = element.GetAttributeValueAsNullableDateTime("lp");
             string genre = element.GetNonEmptyAttributeValueOrNull("g");
             string location = element.GetNonEmptyAttributeValueOrNull("l");
-            int? duration = element.GetAttributeValueAsNullableInt32("d");
-            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
+            double? durationInSeconds = element.GetAttributeValueAsNullableDouble("d");
+            TimeSpan? durationTimespan = durationInSeconds == null
+                                             ? (TimeSpan?)null
+                                             : TimeSpan.FromSeconds(durationInSeconds.Value);
+
+            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, durationTimespan);
         }
 
         public static Library ToLibrary(XElement element)

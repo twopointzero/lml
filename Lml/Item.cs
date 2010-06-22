@@ -6,7 +6,7 @@ namespace twopointzero.Lml
     {
         private readonly string _artist;
         private readonly DateTime? _dateAdded;
-        private readonly long? _duration;
+        private readonly TimeSpan? _duration;
         private readonly string _genre;
         private readonly DateTime? _lastPlayed;
         private readonly string _location;
@@ -15,7 +15,7 @@ namespace twopointzero.Lml
         private readonly string _title;
 
         public Item(string artist, string title, double? rating, DateTime? dateAdded, int? playCount,
-                    DateTime? lastPlayed, string genre, string location, long? duration)
+                    DateTime? lastPlayed, string genre, string location, TimeSpan? duration)
         {
             _artist = artist;
             _title = title;
@@ -68,7 +68,7 @@ namespace twopointzero.Lml
             get { return _location; }
         }
 
-        public long? Duration
+        public TimeSpan? Duration
         {
             get { return _duration; }
         }

@@ -42,11 +42,14 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
                                        item3);
 
             var expectedItem1 = new Item("Artist1", "Title1", 0.421, new DateTime(2009, 1, 11), 691,
-                                         new DateTime(2010, 1, 11), "Genre1", @"C:\path\file1.ext", 741);
+                                         new DateTime(2010, 1, 11), "Genre1", @"C:\path\file1.ext",
+                                         TimeSpan.FromSeconds(741));
             var expectedItem2 = new Item("Artist2", "Title2", 0.422, new DateTime(2009, 1, 12), 692,
-                                         new DateTime(2010, 1, 12), "Genre2", @"C:\path\file2.ext", 742);
+                                         new DateTime(2010, 1, 12), "Genre2", @"C:\path\file2.ext",
+                                         TimeSpan.FromSeconds(742));
             var expectedItem3 = new Item("Artist3", "Title3", 0.423, new DateTime(2009, 1, 13), 693,
-                                         new DateTime(2010, 1, 13), "Genre3", @"C:\path\file3.ext", 743);
+                                         new DateTime(2010, 1, 13), "Genre3", @"C:\path\file3.ext",
+                                         TimeSpan.FromSeconds(743));
             var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
             var actual = LmlXmlSerializer.ToLibrary(library);

@@ -38,7 +38,7 @@ namespace twopointzero.Lml.Importers
             DateTime? lastPlayed = ImportDateTime(wmpMedia.UserLastPlayedTime);
             string genre = ImportString(wmpMedia.WmGenre);
             string location = ImportString(wmpMedia.SourceUrl);
-            long? duration = ImportDuration(wmpMedia.Duration);
+            TimeSpan? duration = ImportDuration(wmpMedia.Duration);
 
             return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
         }
@@ -114,13 +114,13 @@ namespace twopointzero.Lml.Importers
             return DateTime.Parse(value, CultureInfo.InvariantCulture.DateTimeFormat);
         }
 
-        private static long? ImportDuration(string value)
+        private static TimeSpan? ImportDuration(string seconds)
         {
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(seconds))
             {
                 return null;
             }
-            return (long)(double.Parse(value) * 1000);
+            return TimeSpan.FromSeconds(double.Parse(seconds));
         }
     }
 }
