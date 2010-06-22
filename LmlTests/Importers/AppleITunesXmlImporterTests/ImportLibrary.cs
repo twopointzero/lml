@@ -63,18 +63,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 
                         FindItemAndAssertPropertyEquality(
                             items,
-                            "dj twopointzero", // artist
-                            "Maraschino", // title
-                            null, // rating
-                            new DateTime(2010, 3, 23, 19, 55, 00, DateTimeKind.Utc), // dateAdded
-                            null, // playCount
-                            null, // lastPlayed
-                            "Podcast", // genre
-                            "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Podcasts/dj%20twopointzero%20%C2%BB%20Podcasts/Maraschino.m4a",
-                            TimeSpan.FromMilliseconds(1780041)); // duration
-
-                        FindItemAndAssertPropertyEquality(
-                            items,
                             "Nine Inch Nails", // artist
                             "999,999", // title
                             null, // rating
@@ -151,7 +139,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         [Test]
         public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedLibrarySourceType()
         {
-            ImportLibraryFromSampleFile(library => Assert.AreEqual("iTunes 9.0.3", library.SourceType));
+            ImportLibraryFromSampleFile(library => Assert.AreEqual("iTunes 9.1.1", library.SourceType));
         }
 
         [Test]
@@ -163,7 +151,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         [Test]
         public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedNumberOfItems()
         {
-            ImportLibraryFromSampleFile(library => Assert.AreEqual(7, library.Items.Count()));
+            ImportLibraryFromSampleFile(library => Assert.AreEqual(6, library.Items.Count()));
         }
     }
 }

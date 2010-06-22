@@ -145,11 +145,15 @@ namespace twopointzero.Lml.Importers
         {
             var entries = GetPrimitiveEntries(dict);
 
+            if (ShouldSkip(entries))
+                return null;
+
             object artist;
             entries.TryGetValue("Artist", out artist);
 
-            object title;
-            entries.TryGetValue("Name", out title);
+            object name;
+            entries.TryGetValue("Name", out name);
+            string title = PrepareTitle(name, artist);
 
             object rating;
             entries.TryGetValue("Rating", out rating);
@@ -175,9 +179,46 @@ namespace twopointzero.Lml.Importers
                                      ? (TimeSpan?)null
                                      : TimeSpan.FromMilliseconds((long)durationInMilliseconds);
 
-            return new Item(artist as string, title as string, ImportRating(rating), dateAdded as DateTime?,
+            return new Item(artist as string, title, ImportRating(rating), dateAdded as DateTime?,
                             ImportPlayCount(playCount), lastPlayed as DateTime?, genre as string, location as string,
                             duration);
+        }
+
+        private static string PrepareTitle(object name, object artist)
+        {
+            if (name == null)
+                return null;
+            
+            if (artist == null && !(name is string))
+                return null;
+
+            var nameString = (string)name;
+
+            if (artist == null)
+                return nameString;
+
+            //  remove artist from the beginning or end of the name value, if necessary
+
+            string artistSuffix = " - " + artist;
+            if (nameString.EndsWith(artistSuffix))
+                return nameString.Substring(0, nameString.Length - artistSuffix.Length);
+
+            string artistPrefix = artist + " - ";
+            if (nameString.StartsWith(artistPrefix))
+                return nameString.Substring(artistPrefix.Length);
+
+            return nameString;
+        }
+
+        private static bool ShouldSkip(IDictionary<string, object> entries)
+        {
+            return IsPresentAndTrue(entries, "Movie") || IsPresentAndTrue(entries, "Podcast");
+        }
+
+        private static bool IsPresentAndTrue(IDictionary<string, object> entries, string key)
+        {
+            object movie;
+            return entries.TryGetValue(key, out movie) && (bool)movie;
         }
 
         private static double? ImportRating(object rating)

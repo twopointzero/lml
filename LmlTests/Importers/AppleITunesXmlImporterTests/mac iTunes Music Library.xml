@@ -4,16 +4,16 @@
 <dict>
 	<key>Major Version</key><integer>1</integer>
 	<key>Minor Version</key><integer>1</integer>
-	<key>Application Version</key><string>9.0.3</string>
+	<key>Application Version</key><string>9.1.1</string>
 	<key>Features</key><integer>5</integer>
 	<key>Show Content Ratings</key><true/>
 	<key>Music Folder</key><string>file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/</string>
 	<key>Library Persistent ID</key><string>52CB117AA10041F8</string>
 	<key>Tracks</key>
 	<dict>
-		<key>75</key>
+		<key>237</key>
 		<dict>
-			<key>Track ID</key><integer>75</integer>
+			<key>Track ID</key><integer>237</integer>
 			<key>Name</key><string>Maraschino</string>
 			<key>Artist</key><string>dj twopointzero</string>
 			<key>Album Artist</key><string>dj twopointzero</string>
@@ -38,10 +38,10 @@
 			<key>File Folder Count</key><integer>4</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>77</key>
+		<key>239</key>
 		<dict>
-			<key>Track ID</key><integer>77</integer>
-			<key>Name</key><string>999,999</string>
+			<key>Track ID</key><integer>239</integer>
+			<key>Name</key><string>999,999 - Nine Inch Nails</string>
 			<key>Artist</key><string>Nine Inch Nails</string>
 			<key>Composer</key><string>Trent Reznor</string>
 			<key>Album</key><string>The Slip</string>
@@ -64,10 +64,10 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>79</key>
+		<key>241</key>
 		<dict>
-			<key>Track ID</key><integer>79</integer>
-			<key>Name</key><string>Love, In Itself</string>
+			<key>Track ID</key><integer>241</integer>
+			<key>Name</key><string>Love, In Itself - Depeche Mode</string>
 			<key>Artist</key><string>Depeche Mode</string>
 			<key>Album</key><string>Construction Time Again</string>
 			<key>Kind</key><string>AAC audio file</string>
@@ -90,10 +90,10 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>81</key>
+		<key>243</key>
 		<dict>
-			<key>Track ID</key><integer>81</integer>
-			<key>Name</key><string>See The Sea (Red)</string>
+			<key>Track ID</key><integer>243</integer>
+			<key>Name</key><string>See The Sea (Red) - Vitalic</string>
 			<key>Artist</key><string>Vitalic</string>
 			<key>Album</key><string>Flashmob</string>
 			<key>Genre</key><string>Electro</string>
@@ -115,10 +115,10 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>83</key>
+		<key>245</key>
 		<dict>
-			<key>Track ID</key><integer>83</integer>
-			<key>Name</key><string>1,000,000</string>
+			<key>Track ID</key><integer>245</integer>
+			<key>Name</key><string>1,000,000 - Nine Inch Nails</string>
 			<key>Artist</key><string>Nine Inch Nails</string>
 			<key>Composer</key><string>Trent Reznor</string>
 			<key>Album</key><string>The Slip</string>
@@ -141,10 +141,10 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>85</key>
+		<key>247</key>
 		<dict>
-			<key>Track ID</key><integer>85</integer>
-			<key>Name</key><string>More Than A Party</string>
+			<key>Track ID</key><integer>247</integer>
+			<key>Name</key><string>More Than A Party - Depeche Mode</string>
 			<key>Artist</key><string>Depeche Mode</string>
 			<key>Album</key><string>Construction Time Again</string>
 			<key>Kind</key><string>AAC audio file</string>
@@ -166,10 +166,10 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
-		<key>87</key>
+		<key>249</key>
 		<dict>
-			<key>Track ID</key><integer>87</integer>
-			<key>Name</key><string>Poison Lips</string>
+			<key>Track ID</key><integer>249</integer>
+			<key>Name</key><string>Poison Lips - Vitalic</string>
 			<key>Artist</key><string>Vitalic</string>
 			<key>Album</key><string>Flashmob</string>
 			<key>Genre</key><string>Electro</string>
@@ -192,44 +192,73 @@
 			<key>File Folder Count</key><integer>5</integer>
 			<key>Library Folder Count</key><integer>1</integer>
 		</dict>
+		<key>411</key>
+		<dict>
+			<key>Track ID</key><integer>411</integer>
+			<key>Name</key><string>Tron Legacy Trailer (iPad)</string>
+			<key>Kind</key><string>MPEG-4 video file</string>
+			<key>Size</key><integer>69844172</integer>
+			<key>Total Time</key><integer>140348</integer>
+			<key>Date Modified</key><date>2010-06-11T18:45:25Z</date>
+			<key>Date Added</key><date>2010-06-11T18:34:02Z</date>
+			<key>Bit Rate</key><integer>124</integer>
+			<key>Play Count</key><integer>1</integer>
+			<key>Play Date</key><integer>3359101735</integer>
+			<key>Play Date UTC</key><date>2010-06-11T18:48:55Z</date>
+			<key>Artwork Count</key><integer>1</integer>
+			<key>Persistent ID</key><string>8860AE51967B8D22</string>
+			<key>Track Type</key><string>File</string>
+			<key>Has Video</key><true/>
+			<key>HD</key><false/>
+			<key>Video Width</key><integer>1280</integer>
+			<key>Video Height</key><integer>533</integer>
+			<key>Movie</key><true/>
+			<key>File Type</key><integer>1295275552</integer>
+			<key>Location</key><string>file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Movies/Tron%20Legacy%20Trailer%20(iPad)/Tron%20Legacy%20Trailer%20(iPad).m4v</string>
+			<key>File Folder Count</key><integer>4</integer>
+			<key>Library Folder Count</key><integer>1</integer>
+		</dict>
 	</dict>
 	<key>Playlists</key>
 	<array>
 		<dict>
 			<key>Name</key><string>Library</string>
 			<key>Master</key><true/>
-			<key>Playlist ID</key><integer>89</integer>
+			<key>Playlist ID</key><integer>419</integer>
 			<key>Playlist Persistent ID</key><string>B0BC188DACCEFA66</string>
 			<key>Visible</key><false/>
 			<key>All Items</key><true/>
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>79</integer>
+					<key>Track ID</key><integer>241</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>85</integer>
+					<key>Track ID</key><integer>247</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>75</integer>
+					<key>Track ID</key><integer>237</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>77</integer>
+					<key>Track ID</key><integer>239</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>83</integer>
+					<key>Track ID</key><integer>245</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>81</integer>
+					<key>Track ID</key><integer>243</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>87</integer>
+					<key>Track ID</key><integer>249</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>411</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>Music</string>
-			<key>Playlist ID</key><integer>152</integer>
+			<key>Playlist ID</key><integer>485</integer>
 			<key>Playlist Persistent ID</key><string>20254390BBD7630A</string>
 			<key>Distinguished Kind</key><integer>4</integer>
 			<key>Music</key><true/>
@@ -256,28 +285,28 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>79</integer>
+					<key>Track ID</key><integer>241</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>85</integer>
+					<key>Track ID</key><integer>247</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>77</integer>
+					<key>Track ID</key><integer>239</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>83</integer>
+					<key>Track ID</key><integer>245</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>81</integer>
+					<key>Track ID</key><integer>243</integer>
 				</dict>
 				<dict>
-					<key>Track ID</key><integer>87</integer>
+					<key>Track ID</key><integer>249</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>Movies</string>
-			<key>Playlist ID</key><integer>161</integer>
+			<key>Playlist ID</key><integer>494</integer>
 			<key>Playlist Persistent ID</key><string>1860039F450AA04A</string>
 			<key>Distinguished Kind</key><integer>2</integer>
 			<key>Movies</key><true/>
@@ -296,10 +325,16 @@
 			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAggAYAAAAAAAAAAAAAAAAAAAAB
 			AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 			</data>
+			<key>Playlist Items</key>
+			<array>
+				<dict>
+					<key>Track ID</key><integer>411</integer>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>TV Shows</string>
-			<key>Playlist ID</key><integer>164</integer>
+			<key>Playlist ID</key><integer>498</integer>
 			<key>Playlist Persistent ID</key><string>9B00135EB2F1E61C</string>
 			<key>Distinguished Kind</key><integer>3</integer>
 			<key>TV Shows</key><true/>
@@ -321,7 +356,7 @@
 		</dict>
 		<dict>
 			<key>Name</key><string>Podcasts</string>
-			<key>Playlist ID</key><integer>131</integer>
+			<key>Playlist ID</key><integer>465</integer>
 			<key>Playlist Persistent ID</key><string>7736D6E0794E613F</string>
 			<key>Distinguished Kind</key><integer>10</integer>
 			<key>Podcasts</key><true/>
@@ -329,20 +364,72 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>75</integer>
+					<key>Track ID</key><integer>237</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
+			<key>Name</key><string>Books</string>
+			<key>Playlist ID</key><integer>501</integer>
+			<key>Playlist Persistent ID</key><string>A5897CF1DE93B791</string>
+			<key>Distinguished Kind</key><integer>5</integer>
+			<key>Audiobooks</key><true/>
+			<key>Books</key><true/>
+			<key>All Items</key><true/>
+			<key>Smart Info</key>
+			<data>
+			AQEAAwAAAAIAAAAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAA==
+			</data>
+			<key>Smart Criteria</key>
+			<data>
+			U0xzdAABAAEAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAQAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAABAAAgAAAAAAAAAAAAAAAAAAAAB
+			AAAAAABAAAgAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AgAIAAAA
+			AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAE
+			AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAAAAPAIACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			AAAAAAAAAEQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAAAAAAAAAAAAAAAAAAAAAA
+			AAEAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+			</data>
+			<key>Playlist Items</key>
+			<array>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key><string>Purchased</string>
+			<key>Playlist ID</key><integer>608</integer>
+			<key>Playlist Persistent ID</key><string>CF9061BD32D2019B</string>
+			<key>Distinguished Kind</key><integer>19</integer>
+			<key>Purchased Music</key><true/>
+			<key>All Items</key><true/>
+			<key>Playlist Items</key>
+			<array>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key><string>Purchased on Jeremy Gray’s iPad</string>
+			<key>Playlist ID</key><integer>614</integer>
+			<key>Playlist Persistent ID</key><string>12573458CF2FE7E5</string>
+			<key>Distinguished Kind</key><integer>20</integer>
+			<key>All Items</key><true/>
+			<key>Playlist Items</key>
+			<array>
+			</array>
+		</dict>
+		<dict>
 			<key>Name</key><string>Genius</string>
-			<key>Playlist ID</key><integer>176</integer>
+			<key>Playlist ID</key><integer>513</integer>
 			<key>Playlist Persistent ID</key><string>2DA46C835352C4E6</string>
 			<key>Distinguished Kind</key><integer>26</integer>
 			<key>All Items</key><true/>
 		</dict>
 		<dict>
 			<key>Name</key><string>iTunes DJ</string>
-			<key>Playlist ID</key><integer>128</integer>
+			<key>Playlist ID</key><integer>462</integer>
 			<key>Playlist Persistent ID</key><string>D08A73DFB6C3EB9E</string>
 			<key>Distinguished Kind</key><integer>22</integer>
 			<key>Party Shuffle</key><true/>
@@ -350,7 +437,7 @@
 		</dict>
 		<dict>
 			<key>Name</key><string>90’s Music</string>
-			<key>Playlist ID</key><integer>99</integer>
+			<key>Playlist ID</key><integer>433</integer>
 			<key>Playlist Persistent ID</key><string>6BABD1BCD5514890</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -378,7 +465,7 @@
 		</dict>
 		<dict>
 			<key>Name</key><string>Classical Music</string>
-			<key>Playlist ID</key><integer>125</integer>
+			<key>Playlist ID</key><integer>459</integer>
 			<key>Playlist Persistent ID</key><string>465E7271F4DD57AC</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -417,7 +504,7 @@
 		</dict>
 		<dict>
 			<key>Name</key><string>Music Videos</string>
-			<key>Playlist ID</key><integer>122</integer>
+			<key>Playlist ID</key><integer>456</integer>
 			<key>Playlist Persistent ID</key><string>D85C5923B06CCCE9</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -437,7 +524,7 @@
 		</dict>
 		<dict>
 			<key>Name</key><string>My Top Rated</string>
-			<key>Playlist ID</key><integer>102</integer>
+			<key>Playlist ID</key><integer>436</integer>
 			<key>Playlist Persistent ID</key><string>5FB197988FDEE76E</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -457,13 +544,13 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>79</integer>
+					<key>Track ID</key><integer>241</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>Recently Added</string>
-			<key>Playlist ID</key><integer>113</integer>
+			<key>Playlist ID</key><integer>449</integer>
 			<key>Playlist Persistent ID</key><string>C3F3CEAD4AB93E8A</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -486,28 +573,13 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>79</integer>
-				</dict>
-				<dict>
-					<key>Track ID</key><integer>85</integer>
-				</dict>
-				<dict>
-					<key>Track ID</key><integer>77</integer>
-				</dict>
-				<dict>
-					<key>Track ID</key><integer>83</integer>
-				</dict>
-				<dict>
-					<key>Track ID</key><integer>81</integer>
-				</dict>
-				<dict>
-					<key>Track ID</key><integer>87</integer>
+					<key>Track ID</key><integer>411</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>Recently Played</string>
-			<key>Playlist ID</key><integer>109</integer>
+			<key>Playlist ID</key><integer>445</integer>
 			<key>Playlist Persistent ID</key><string>0420FFFCE0E7DCB9</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -530,13 +602,13 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>87</integer>
+					<key>Track ID</key><integer>411</integer>
 				</dict>
 			</array>
 		</dict>
 		<dict>
 			<key>Name</key><string>Top 25 Most Played</string>
-			<key>Playlist ID</key><integer>105</integer>
+			<key>Playlist ID</key><integer>440</integer>
 			<key>Playlist Persistent ID</key><string>D5024242D26ABE2E</string>
 			<key>All Items</key><true/>
 			<key>Smart Info</key>
@@ -559,7 +631,37 @@
 			<key>Playlist Items</key>
 			<array>
 				<dict>
-					<key>Track ID</key><integer>87</integer>
+					<key>Track ID</key><integer>249</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>411</integer>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>Name</key><string>test</string>
+			<key>Playlist ID</key><integer>599</integer>
+			<key>Playlist Persistent ID</key><string>9B45A10269DD0834</string>
+			<key>All Items</key><true/>
+			<key>Playlist Items</key>
+			<array>
+				<dict>
+					<key>Track ID</key><integer>241</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>247</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>239</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>245</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>243</integer>
+				</dict>
+				<dict>
+					<key>Track ID</key><integer>249</integer>
 				</dict>
 			</array>
 		</dict>
