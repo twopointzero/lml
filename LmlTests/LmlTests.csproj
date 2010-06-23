@@ -59,6 +59,8 @@
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveEntries.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\GetPrimitiveValue.cs" />
     <Compile Include="Importers\AppleITunesXmlImporterTests\ImportLibrary.cs" />
+    <Compile Include="Importers\AppleITunesXmlImporterTests\ImportMac_9_0_3_SimpleNamesLibrary.cs" />
+    <Compile Include="Importers\AppleITunesXmlImporterTests\ImportMac_9_1_1_ArtistSuffixLibrary.cs" />
     <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportDateTime.cs" />
     <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportLibrary.cs" />
     <Compile Include="Importers\WindowsMediaPlayerImporterTests\ImportRating.cs" />
@@ -75,7 +77,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Importers\AppleITunesXmlImporterTests\mac iTunes Music Library.xml">
+    <Content Include="Importers\AppleITunesXmlImporterTests\mac iTML 9_0_3 - simple names.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Importers\AppleITunesXmlImporterTests\mac iTML 9_1_1 - artist suffixes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

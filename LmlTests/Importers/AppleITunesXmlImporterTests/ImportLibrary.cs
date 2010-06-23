@@ -8,12 +8,13 @@ using twopointzero.Lml.Importers;
 
 namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
 {
-    [TestFixture]
-    public class ImportLibrary
+    public abstract class ImportLibrary
     {
-        private static void ImportLibraryFromSampleFile(Action<Library> libraryAction)
+        protected abstract string LibraryPath { get; }
+
+        protected void ImportLibraryFromFile(Action<Library> libraryAction)
         {
-            using (var reader = new StreamReader(@"Importers\AppleITunesXmlImporterTests\mac iTunes Music Library.xml"))
+            using (var reader = new StreamReader(LibraryPath))
             {
                 var library = AppleITunesXmlImporter.ImportLibrary(reader);
                 libraryAction(library);
@@ -47,16 +48,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             Assert.AreEqual(expected, item);
         }
 
-        [Test]
-        public void GivenNullShouldThrowArgumentNullException()
+        protected void ImportLibraryFromFileAndAssertItems()
         {
-            Assert.Throws<ArgumentNullException>(() => AppleITunesXmlImporter.ImportLibrary(null));
-        }
-
-        [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedItems()
-        {
-            ImportLibraryFromSampleFile(
+            ImportLibraryFromFile(
                 library =>
                     {
                         IEnumerable<Item> items = library.Items.ToList();
@@ -134,24 +128,6 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             TimeSpan.FromMilliseconds(232240)); // duration
                     }
                 );
-        }
-
-        [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedLibrarySourceType()
-        {
-            ImportLibraryFromSampleFile(library => Assert.AreEqual("iTunes 9.1.1", library.SourceType));
-        }
-
-        [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedLibraryVersion()
-        {
-            ImportLibraryFromSampleFile(library => Assert.AreEqual("1.0", library.Version));
-        }
-
-        [Test]
-        public void GivenTheMacITunesMusicLibrarySampleFileShouldProduceTheExpectedNumberOfItems()
-        {
-            ImportLibraryFromSampleFile(library => Assert.AreEqual(6, library.Items.Count()));
         }
     }
 }
