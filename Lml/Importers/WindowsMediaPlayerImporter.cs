@@ -8,8 +8,6 @@ namespace twopointzero.Lml.Importers
 {
     public static class WindowsMediaPlayerImporter
     {
-        private const string LibraryVersion = "1.0";
-
         public static Library ImportLibrary()
         {
             return ImportLibrary(new WmpMediaCollection("audio"));
@@ -19,7 +17,7 @@ namespace twopointzero.Lml.Importers
         {
             Validator.IsNotNull(wmpMediaCollection, "wmpMediaCollection");
 
-            return new Library(LibraryVersion, "Windows Media Player " + wmpMediaCollection.VersionInfo,
+            return new Library("1.1", "Windows Media Player " + wmpMediaCollection.VersionInfo,
                                GetItems(wmpMediaCollection.Media));
         }
 
@@ -31,6 +29,7 @@ namespace twopointzero.Lml.Importers
         private static Item GetItem(WmpMedia wmpMedia)
         {
             string artist = ImportString(wmpMedia.DisplayArtist);
+            string album = ImportString(wmpMedia.Album);
             string title = ImportString(wmpMedia.Title);
             double? rating = ImportRating(wmpMedia.UserRating);
             DateTime? dateAdded = ImportDateTime(wmpMedia.AcquisitionTime);
@@ -39,8 +38,10 @@ namespace twopointzero.Lml.Importers
             string genre = ImportString(wmpMedia.WmGenre);
             string location = ImportString(wmpMedia.SourceUrl);
             TimeSpan? duration = ImportDuration(wmpMedia.Duration);
+            int? bitsPerSecond = ImportNullableInt32(wmpMedia.Bitrate);
 
-            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
+            return new Item(artist, album, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration,
+                            bitsPerSecond);
         }
 
         private static string ImportString(string value)

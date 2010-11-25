@@ -24,10 +24,12 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         private static void FindItemAndAssertPropertyEquality(IEnumerable<Item> items, string artist, string title,
                                                               double? rating, DateTime? dateAdded, int? playCount,
                                                               DateTime? lastPlayed,
-                                                              string genre, string location, TimeSpan? duration)
+                                                              string genre, string location, TimeSpan? duration,
+                                                              string album, int bitsPerSecond)
         {
             var item = items.First(o => o.Title == title);
             Assert.AreEqual(artist, item.Artist);
+            Assert.AreEqual(album, item.Album);
             if (rating == null)
             {
                 Assert.IsNull(item.Rating);
@@ -43,8 +45,10 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
             Assert.AreEqual(genre, item.Genre);
             Assert.AreEqual(location, item.Location);
             Assert.AreEqual(duration, item.Duration);
+            Assert.AreEqual(bitsPerSecond, item.BitsPerSecond);
 
-            var expected = new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, duration);
+            var expected = new Item(artist, album, title, rating, dateAdded, playCount, lastPlayed, genre, location,
+                                    duration, bitsPerSecond);
             Assert.AreEqual(expected, item);
         }
 
@@ -65,7 +69,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Nine%20Inch%20Nails/The%20Slip/1-01%20999,999.m4a",
-                            TimeSpan.FromMilliseconds(85159)); // duration
+                            TimeSpan.FromMilliseconds(85159), // duration
+                            "The Slip", // album
+                            262000); // bitsPerSecond
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -77,7 +83,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Depeche%20Mode/Construction%20Time%20Again/01%20Love,%20In%20Itself.m4a",
-                            TimeSpan.FromMilliseconds(269840)); // duration
+                            TimeSpan.FromMilliseconds(269840), // duration
+                            "Construction Time Again", // album
+                            295000); // bitsPerSecond
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -89,7 +97,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             "Electro", // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Vitalic/Flashmob/01%20See%20The%20Sea%20(Red).m4a",
-                            TimeSpan.FromMilliseconds(244666)); // duration
+                            TimeSpan.FromMilliseconds(244666), // duration
+                            "Flashmob", // album
+                            327000); // bitsPerSecond
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -101,7 +111,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Nine%20Inch%20Nails/The%20Slip/1-02%201,000,000.m4a",
-                            TimeSpan.FromMilliseconds(236197)); // duration
+                            TimeSpan.FromMilliseconds(236197), // duration
+                            "The Slip", // album
+                            318000); // bitsPerSecond
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -113,7 +125,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             null, // lastPlayed
                             null, // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Depeche%20Mode/Construction%20Time%20Again/02%20More%20Than%20A%20Party.m4a",
-                            TimeSpan.FromMilliseconds(285453)); // duration
+                            TimeSpan.FromMilliseconds(285453), // duration
+                            "Construction Time Again", // album
+                            310000); // bitsPerSecond
 
                         FindItemAndAssertPropertyEquality(
                             items,
@@ -125,7 +139,9 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
                             new DateTime(2010, 3, 23, 20, 54, 50, DateTimeKind.Utc), // lastPlayed
                             "Electro", // genre
                             "file://localhost/Users/jeremygray/Music/iTunes/iTunes%20Media/Music/Vitalic/Flashmob/02%20Poison%20Lips.m4a",
-                            TimeSpan.FromMilliseconds(232240)); // duration
+                            TimeSpan.FromMilliseconds(232240), // duration
+                            "Flashmob", // album
+                            336000); // bitsPerSecond
                     }
                 );
         }

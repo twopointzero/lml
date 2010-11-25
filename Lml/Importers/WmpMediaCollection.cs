@@ -46,6 +46,7 @@ namespace twopointzero.Lml.Importers
         private static WmpMedia GetItem(IWMPMedia media)
         {
             var displayArtist = media.getItemInfo("DisplayArtist");
+            var album = media.getItemInfo("Album");
             var title = media.getItemInfo("Title");
             var userRating = media.getItemInfo("UserRating");
             var acquisitionTime = media.getItemInfo("AcquisitionTime");
@@ -54,9 +55,10 @@ namespace twopointzero.Lml.Importers
             var wmGenre = media.getItemInfo("WM/Genre");
             var sourceUrl = media.getItemInfo("SourceURL");
             var duration = media.getItemInfo("Duration");
+            var bitrate = media.getItemInfo("Bitrate");
 
-            return new WmpMedia(displayArtist, title, userRating, acquisitionTime, userPlayCount, userLastPlayedTime,
-                                wmGenre, sourceUrl, duration);
+            return new WmpMedia(displayArtist, album, title, userRating, acquisitionTime, userPlayCount,
+                                userLastPlayedTime, wmGenre, sourceUrl, duration, bitrate);
         }
     }
 }

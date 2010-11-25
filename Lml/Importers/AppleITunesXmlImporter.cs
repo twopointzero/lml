@@ -10,8 +10,6 @@ namespace twopointzero.Lml.Importers
 {
     public static class AppleITunesXmlImporter
     {
-        private const string LibraryVersion = "1.0";
-
         internal static XElement GetPlistRootNode(TextReader readerAtStartOfDocument)
         {
             Validator.IsNotNull(readerAtStartOfDocument, "readerAtStartOfDocument");
@@ -36,7 +34,7 @@ namespace twopointzero.Lml.Importers
             }
 
             var version = root.Attribute("version");
-            if (version == null || version.Value != LibraryVersion)
+            if (version == null || version.Value != "1.0")
             {
                 throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
                                                       "The provided TextReader's document does not contain the required plist root node version of \"1.0\".");
@@ -131,7 +129,7 @@ namespace twopointzero.Lml.Importers
                                                       "The provided document's Tracks value is of the wrong type.");
             }
 
-            return new Library(LibraryVersion, "iTunes " + version, GetItems(tracksElement));
+            return new Library("1.1", "iTunes " + version, GetItems(tracksElement));
         }
 
         private static IEnumerable<Item> GetItems(XElement tracks)
@@ -150,6 +148,9 @@ namespace twopointzero.Lml.Importers
 
             object artist;
             entries.TryGetValue("Artist", out artist);
+
+            object album;
+            entries.TryGetValue("Album", out album);
 
             object name;
             entries.TryGetValue("Name", out name);
@@ -179,9 +180,12 @@ namespace twopointzero.Lml.Importers
                                      ? (TimeSpan?)null
                                      : TimeSpan.FromMilliseconds((long)durationInMilliseconds);
 
-            return new Item(artist as string, title, ImportRating(rating), dateAdded as DateTime?,
+            object bitRate;
+            entries.TryGetValue("Bit Rate", out bitRate);
+
+            return new Item(artist as string, album as string, title, ImportRating(rating), dateAdded as DateTime?,
                             ImportPlayCount(playCount), lastPlayed as DateTime?, genre as string, location as string,
-                            duration);
+                            duration, ImportBitRate(bitRate));
         }
 
         private static string PrepareTitle(object name, object artist)
@@ -235,6 +239,11 @@ namespace twopointzero.Lml.Importers
         private static int? ImportPlayCount(object playCount)
         {
             return (int?)(playCount as long?);
+        }
+
+        private static int? ImportBitRate(object bitRate)
+        {
+            return bitRate == null ? (int?)null : (int)(1000 * (long)bitRate);
         }
     }
 }

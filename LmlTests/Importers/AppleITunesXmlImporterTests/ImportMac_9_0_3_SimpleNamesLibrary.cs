@@ -34,7 +34,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         [Test]
         public void GivenTheFileShouldProduceTheExpectedLibraryVersion()
         {
-            ImportLibraryFromFile(library => Assert.AreEqual("1.0", library.Version));
+            ImportLibraryFromFile(library => Assert.AreEqual("1.1", library.Version));
         }
 
         [Test]

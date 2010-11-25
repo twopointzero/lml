@@ -13,11 +13,14 @@ namespace twopointzero.Lml
         private readonly int? _playCount;
         private readonly double? _rating;
         private readonly string _title;
+        private readonly string _album;
+        private readonly int? _bitsPerSecond;
 
-        public Item(string artist, string title, double? rating, DateTime? dateAdded, int? playCount,
-                    DateTime? lastPlayed, string genre, string location, TimeSpan? duration)
+        public Item(string artist, string album, string title, double? rating, DateTime? dateAdded, int? playCount,
+                    DateTime? lastPlayed, string genre, string location, TimeSpan? duration, int? bitsPerSecond)
         {
             _artist = artist;
+            _album = album;
             _title = title;
             _rating = rating;
             _dateAdded = dateAdded;
@@ -26,11 +29,17 @@ namespace twopointzero.Lml
             _genre = genre;
             _location = location;
             _duration = duration;
+            _bitsPerSecond = bitsPerSecond;
         }
 
         public string Artist
         {
             get { return _artist; }
+        }
+
+        public string Album
+        {
+            get { return _album; }
         }
 
         public string Title
@@ -73,6 +82,10 @@ namespace twopointzero.Lml
             get { return _duration; }
         }
 
+        public int? BitsPerSecond
+        {
+            get { return _bitsPerSecond; }
+        }
 
         #region IEquatable<Item> Members
 
@@ -86,10 +99,11 @@ namespace twopointzero.Lml
             {
                 return true;
             }
-            return Equals(other._artist, _artist) && other._dateAdded.Equals(_dateAdded) &&
+            return Equals(other._artist, _artist) && Equals(other._album, _album) && other._dateAdded.Equals(_dateAdded) &&
                    other._duration.Equals(_duration) && Equals(other._genre, _genre) &&
                    other._lastPlayed.Equals(_lastPlayed) && Equals(other._location, _location) &&
-                   other._playCount.Equals(_playCount) && other._rating.Equals(_rating) && Equals(other._title, _title);
+                   other._playCount.Equals(_playCount) && other._rating.Equals(_rating) && Equals(other._title, _title) &&
+                   other._bitsPerSecond.Equals(_bitsPerSecond);
         }
 
         #endregion
@@ -117,6 +131,7 @@ namespace twopointzero.Lml
             unchecked
             {
                 int result = (_artist != null ? _artist.GetHashCode() : 0);
+                result = (result * 397) ^ (_album != null ? _album.GetHashCode() : 0);
                 result = (result * 397) ^ (_dateAdded.HasValue ? _dateAdded.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_duration.HasValue ? _duration.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_genre != null ? _genre.GetHashCode() : 0);
@@ -125,6 +140,7 @@ namespace twopointzero.Lml
                 result = (result * 397) ^ (_playCount.HasValue ? _playCount.Value : 0);
                 result = (result * 397) ^ (_rating.HasValue ? _rating.Value.GetHashCode() : 0);
                 result = (result * 397) ^ (_title != null ? _title.GetHashCode() : 0);
+                result = (result * 397) ^ (_bitsPerSecond.HasValue ? _bitsPerSecond.Value : 0);
                 return result;
             }
         }

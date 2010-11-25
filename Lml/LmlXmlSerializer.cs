@@ -15,6 +15,7 @@ namespace twopointzero.Lml
 
             var element = new XElement("i");
             element.AddAttributeIfValueNonEmpty("a", item.Artist);
+            element.AddAttributeIfValueNonEmpty("al", item.Album);
             element.AddAttributeIfValueNonEmpty("t", item.Title);
             element.AddAttributeIfValueNonEmpty("r", item.Rating);
             element.AddAttributeIfValueNonEmpty("da", item.DateAdded);
@@ -26,6 +27,7 @@ namespace twopointzero.Lml
             {
                 element.AddAttributeIfValueNonEmpty("ds", item.Duration.Value.TotalSeconds.ToString("0.###"));
             }
+            element.AddAttributeIfValueNonEmpty("bps", item.BitsPerSecond);
             return element;
         }
 
@@ -52,6 +54,7 @@ namespace twopointzero.Lml
                 .Validate();
 
             string artist = element.GetNonEmptyAttributeValueOrNull("a");
+            string album = element.GetNonEmptyAttributeValueOrNull("al");
             string title = element.GetNonEmptyAttributeValueOrNull("t");
             double? rating = element.GetAttributeValueAsNullableDouble("r");
             DateTime? dateAdded = element.GetAttributeValueAsNullableDateTime("da");
@@ -63,8 +66,10 @@ namespace twopointzero.Lml
             TimeSpan? durationTimespan = durationInSeconds == null
                                              ? (TimeSpan?)null
                                              : TimeSpan.FromSeconds(durationInSeconds.Value);
+            int? bitsPerSecond = element.GetAttributeValueAsNullableInt32("bps");
 
-            return new Item(artist, title, rating, dateAdded, playCount, lastPlayed, genre, location, durationTimespan);
+            return new Item(artist, album, title, rating, dateAdded, playCount, lastPlayed, genre, location,
+                            durationTimespan, bitsPerSecond);
         }
 
         public static Library ToLibrary(XElement element)

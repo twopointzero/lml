@@ -13,10 +13,10 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenEmptyLibraryShouldProduceExpectedResult()
         {
             var library = new XElement("l",
-                                       new XAttribute("v", "1.0"),
+                                       new XAttribute("v", "1.1"),
                                        new XAttribute("st", "Unit Tests"));
 
-            var expected = new Library("1.0", "Unit Tests", Enumerable.Empty<Item>());
+            var expected = new Library("1.1", "Unit Tests", Enumerable.Empty<Item>());
 
             var actual = LmlXmlSerializer.ToLibrary(library);
 
@@ -28,29 +28,29 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         [Test]
         public void GivenLibraryShouldProduceExpectedResult()
         {
-            var item1 = Mother.CreateItemXElement("Artist1", "Title1", "0.421", "2009-01-11T00:00:00", "691",
-                                                  "2010-01-11T00:00:00", "Genre1", @"C:\path\file1.ext", "741");
-            var item2 = Mother.CreateItemXElement("Artist2", "Title2", "0.422", "2009-01-12T00:00:00", "692",
-                                                  "2010-01-12T00:00:00", "Genre2", @"C:\path\file2.ext", "742");
-            var item3 = Mother.CreateItemXElement("Artist3", "Title3", "0.423", "2009-01-13T00:00:00", "693",
-                                                  "2010-01-13T00:00:00", "Genre3", @"C:\path\file3.ext", "743");
+            var item1 = Mother.CreateItemXElement("Artist1", "Album1", "Title1", "0.421", "2009-01-11T00:00:00", "691",
+                                                  "2010-01-11T00:00:00", "Genre1", @"C:\path\file1.ext", "741", "320001");
+            var item2 = Mother.CreateItemXElement("Artist2", "Album2", "Title2", "0.422", "2009-01-12T00:00:00", "692",
+                                                  "2010-01-12T00:00:00", "Genre2", @"C:\path\file2.ext", "742", "320002");
+            var item3 = Mother.CreateItemXElement("Artist3", "Album3", "Title3", "0.423", "2009-01-13T00:00:00", "693",
+                                                  "2010-01-13T00:00:00", "Genre3", @"C:\path\file3.ext", "743", "320003");
             var library = new XElement("l",
-                                       new XAttribute("v", "1.0"),
+                                       new XAttribute("v", "1.1"),
                                        new XAttribute("st", "Unit Tests"),
                                        item1,
                                        item2,
                                        item3);
 
-            var expectedItem1 = new Item("Artist1", "Title1", 0.421, new DateTime(2009, 1, 11), 691,
+            var expectedItem1 = new Item("Artist1", "Album1", "Title1", 0.421, new DateTime(2009, 1, 11), 691,
                                          new DateTime(2010, 1, 11), "Genre1", @"C:\path\file1.ext",
-                                         TimeSpan.FromSeconds(741));
-            var expectedItem2 = new Item("Artist2", "Title2", 0.422, new DateTime(2009, 1, 12), 692,
+                                         TimeSpan.FromSeconds(741), 320001);
+            var expectedItem2 = new Item("Artist2", "Album2", "Title2", 0.422, new DateTime(2009, 1, 12), 692,
                                          new DateTime(2010, 1, 12), "Genre2", @"C:\path\file2.ext",
-                                         TimeSpan.FromSeconds(742));
-            var expectedItem3 = new Item("Artist3", "Title3", 0.423, new DateTime(2009, 1, 13), 693,
+                                         TimeSpan.FromSeconds(742), 320002);
+            var expectedItem3 = new Item("Artist3", "Album3", "Title3", 0.423, new DateTime(2009, 1, 13), 693,
                                          new DateTime(2010, 1, 13), "Genre3", @"C:\path\file3.ext",
-                                         TimeSpan.FromSeconds(743));
-            var expected = new Library("1.0", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
+                                         TimeSpan.FromSeconds(743), 320003);
+            var expected = new Library("1.1", "Unit Tests", new[] { expectedItem1, expectedItem2, expectedItem3 });
 
             var actual = LmlXmlSerializer.ToLibrary(library);
 
@@ -63,7 +63,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenLibraryWithEmptySourceTypeShouldThrowArgumentOutOfRangeException()
         {
             var library = new XElement("l",
-                                       new XAttribute("v", "1.0"),
+                                       new XAttribute("v", "1.1"),
                                        new XAttribute("st", string.Empty));
 
             Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
@@ -83,7 +83,7 @@ namespace twopointzero.LmlTests.LmlXmlSerializerTests
         public void GivenLibraryWithoutSourceTypeShouldThrowArgumentOutOfRangeException()
         {
             var library = new XElement("l",
-                                       new XAttribute("v", "1.0"));
+                                       new XAttribute("v", "1.1"));
 
             Assert.Throws<ArgumentOutOfRangeException>(() => LmlXmlSerializer.ToLibrary(library));
         }
