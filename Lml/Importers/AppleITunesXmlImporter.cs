@@ -17,15 +17,17 @@ namespace twopointzero.Lml.Importers
             var doc = XDocument.Load(readerAtStartOfDocument);
 
             var documentType = doc.DocumentType;
-            var requiredDocumentType = new XDocumentType("plist", "-//Apple Computer//DTD PLIST 1.0//EN",
-                                                         "http://www.apple.com/DTDs/PropertyList-1.0.dtd", "");
-            if (!XNode.DeepEquals(documentType, requiredDocumentType))
+            if (documentType != null)
             {
-                throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
-                                                      "The provided TextReader's document does not contain the required DOCTYPE of the form " +
-                                                      @"<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">");
+                var requiredDocumentType = new XDocumentType("plist", "-//Apple Computer//DTD PLIST 1.0//EN",
+                                                             "http://www.apple.com/DTDs/PropertyList-1.0.dtd", "");
+                if (!XNode.DeepEquals(documentType, requiredDocumentType))
+                {
+                    throw new ArgumentOutOfRangeException("readerAtStartOfDocument",
+                                                          "The provided TextReader's document does not contain the required DOCTYPE of the form " +
+                                                          @"<!DOCTYPE plist PUBLIC ""-//Apple Computer//DTD PLIST 1.0//EN"" ""http://www.apple.com/DTDs/PropertyList-1.0.dtd"">");
+                }
             }
-
             var root = doc.Element("plist");
             if (root == null)
             {

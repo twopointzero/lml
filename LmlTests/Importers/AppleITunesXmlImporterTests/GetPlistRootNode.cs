@@ -9,7 +9,7 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
     public class GetPlistRootNode
     {
         [Test]
-        public void GivenDocWithMainPlistRootNodeShouldReturnIt()
+        public void GivenDocWithDtdAndMainPlistRootNodeShouldReturnIt()
         {
             const string input =
                 @"<?xml version=""1.0"" encoding=""UTF-8""?>
@@ -24,13 +24,16 @@ namespace twopointzero.LmlTests.Importers.AppleITunesXmlImporterTests
         }
 
         [Test]
-        public void GivenNoDtdShouldThrowArgumentOutOfRangeException()
+        public void GivenDocWithMainPlistRootNodeShouldReturnIt()
         {
-            const string input = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+            const string input = @"
 <plist version=""1.0"">
 </plist>";
             var reader = new StringReader(input);
-            Assert.Throws<ArgumentOutOfRangeException>(() => AppleITunesXmlImporter.GetPlistRootNode(reader));
+            var actual = AppleITunesXmlImporter.GetPlistRootNode(reader);
+            Assert.IsNotNull(actual, "actual");
+            Assert.IsNotNull(actual.Name, "actual.Name");
+            Assert.AreEqual("plist", actual.Name.LocalName);
         }
 
         [Test]
